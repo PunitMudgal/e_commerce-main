@@ -2,24 +2,29 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Karla:wght@200;300;400;500;600;700;800&family=PT+Sans:wght@400;700&family=Wix+Madefor+Text:wght@400;500;600;700;800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Karla:wght@200;300;400;500;600;700;800&family=PT+Sans:wght@400;700&family=Wix+Madefor+Text:wght@400;500;600;700;800&display=swap");
 
-*{
-    padding: 0;
-    margin: 0;
-    scroll-behavior: smooth;
-    box-sizing: border-box;
+* {
+  padding: 0;
+  margin: 0;
+  scroll-behavior: smooth;
+  box-sizing: border-box;
 }
 
 *::-webkit-scrollbar {
-    /* hide scrollbar for IE, Edge and Firefox */
+  /* hide scrollbar for IE, Edge and Firefox */
   display: none;
   /* hide scrollbar for chrome, safari and opera */
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
 
-a{
+a {
   text-decoration: none;
   color: unset;
+}
+
+.box-shadow {
+  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
+    rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
 }

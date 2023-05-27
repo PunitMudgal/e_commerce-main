@@ -8,12 +8,12 @@ import { FaAngleRight, FaAngleLeft } from "react-icons/fa";
 function Home() {
   const sliderRight = () => {
     let slider = document.getElementById("slider");
-    slider.scrollLeft = slider.scrollLeft + 500;
+    slider.scrollLeft = slider.scrollLeft + 800;
   };
 
   const sliderLeft = () => {
     let slider = document.getElementById("slider");
-    slider.scrollLeft = slider.scrollLeft - 500;
+    slider.scrollLeft = slider.scrollLeft - 800;
   };
 
   return (
@@ -31,34 +31,34 @@ function Home() {
         size={30}
       />
 
-      <div className="h-full min-w-[100vw] relative">
+      <div className="h-full w-full relative">
         <div
           id="slider"
-          className="h-full w-[100vw] flex overflow-x-scroll whitespace-nowrap scroll-smooth scrollbar-hide "
+          className="h-full w-full flex overflow-x-scroll whitespace-nowrap scroll-smooth "
         >
           <img
-            className="object-cover h-full w-[100vw]"
-            src={bgImage}
-            alt="bgImg"
-          />
-          <img
-            className="object-cover h-full w-[100vw]"
+            className="object-cover h-full min-w-[100vw]"
             src={bgImage2}
             alt="bgImg2"
           />
           <img
-            className="object-cover h-full w-[100vw]"
+            className="object-cover h-full min-w-[100vw]"
+            src={bgImage}
+            alt="bgImg"
+          />
+          <img
+            className="object-cover h-full min-w-[100vw]"
             src={bgImage3}
             alt="bgImg3"
           />
         </div>
-        <div className="absolute top-[28%] left-[35%] md:left-6 bg-slate-800 p-12 pl-20 pr-20 md:pr-8 md:pl-8 md:p-4 text-white flex flex-col gap-2 text-center rounded-xl opacity-70 font-text3">
-          <h3 className="font-text1 text-4xl md:text-2xl">
+        <div className="absolute top-[25%] left-[25%] md:left-6 bg-slate-800 p-20 pl-20 pr-20 md:pr-8 md:pl-8 md:p-4 text-white flex flex-col gap-2 text-center rounded-xl opacity-70 font-text3 box-shadow">
+          <h3 className="font-text1 text-5xl md:text-2xl">
             Men & Women's Fashion
           </h3>
-          <p>Up to 30% off on all onsale Products</p>
+          <p className="text-2xl md:text-md">Up to 30% off on all onsale Products</p>
           <hr />
-          <a className="bg-orange-500 rounded-md p-2" href="/">
+          <a className="bg-orange-500 rounded-md p-3 self-center" href="/">
             Shop Now
           </a>
         </div>

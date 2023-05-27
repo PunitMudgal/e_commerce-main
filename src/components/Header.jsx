@@ -6,7 +6,7 @@ function Header() {
   const [toggleMenu, setToggleMenu] = useState(false);
 
   return (
-    <div className="w-full p-8 md:p-5 md:text-md text-lg bg-blue-950 text-white font-text1">
+    <div className="w-full p-8 md:p-5 md:text-md text-lg bg-blue-950 text-white font-text1 sticky top-0 z-10">
       <div className="justify-evenly items-center flex md:hidden">
         <p className="text-2xl">
           e<span className="text-orange-500">Shop</span>.
