@@ -1,8 +1,11 @@
 import React from "react";
 import Product from "../components/Product";
-import { FaThLarge, FaStream, FaThList, FaSearch } from "react-icons/fa";
+import { FaThLarge, FaStream, FaSearch } from "react-icons/fa";
+import {UseProductContext} from '../context/ProductContext';
 
 function Main() {
+  const {products, gadgets} = UseProductContext();
+  
   return (
     <div className="p-10 md:p-4">
       <div className="flex justify-evenly md:flex-col">
