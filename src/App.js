@@ -9,7 +9,7 @@ function App() {
  <>
  <ProductProvider>
  <Header /> 
- <Home />
+ {/* <Home /> */}
  <Main />
  </ProductProvider>
  </>

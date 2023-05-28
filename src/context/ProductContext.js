@@ -17,6 +17,10 @@ const initialState = {
 const ProductProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
+  // STORING DATA OF BOTH API IN ONE ARRAY
+  const allProducts = [...state.products, ...state.gadgets];
+
+  // GET GADGET
   const getGadgets = async (key) => {
     dispatch({ type: "API_LOADING_GADGET" });
     try {
@@ -28,6 +32,7 @@ const ProductProvider = ({ children }) => {
       console.log(err);
     }
   };
+  // GET PRODUCTS FROM ANOTHER API
   const getProducts = async (key) => {
     dispatch({ type: "API_LOADING_PRODUCT" });
     try {
@@ -44,16 +49,16 @@ const ProductProvider = ({ children }) => {
     getGadgets(apiKey1);
     getProducts(apiKey2);
   }, []);
-  console.log("state", state);
+  // console.log("state", state);
 
   return (
-    <ProductContext.Provider value={{ ...state }}>
+    <ProductContext.Provider value={{ ...state, allProducts }}>
       {children}
     </ProductContext.Provider>
   );
 };
 
 const UseProductContext = () => {
- return useContext(ProductContext);
+  return useContext(ProductContext);
 };
 export { ProductProvider, ProductContext, UseProductContext };

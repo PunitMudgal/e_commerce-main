@@ -34,7 +34,7 @@ function Home() {
       <div className="h-full w-full relative">
         <div
           id="slider"
-          className="h-full w-full flex overflow-x-scroll whitespace-nowrap scroll-smooth "
+          className="h-full w-full flex overflow-x-scroll whitespace-nowrap scroll-smooth"
         >
           <img
             className="object-cover h-full min-w-[100vw]"
@@ -42,7 +42,7 @@ function Home() {
             alt="bgImg2"
           />
           <img
-            className="object-cover h-full min-w-[100vw]"
+            className="object-cover  border-x-8 border-slate-700 h-full min-w-[100vw]"
             src={bgImage}
             alt="bgImg"
           />
