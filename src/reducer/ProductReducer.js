@@ -1,41 +1,22 @@
 const ProductReducer = (state, action) => {
   switch (action.type) {
-    case "API_LOADING_GADGET":
+    case "ALL_DATA_LOADING":
       return {
         ...state,
-        isLoadingGadget: true,
+        isLoading: true,
       };
-    case "API_SUCCESS_GADGET":
+    case "ALL_DATA_SUCCESS":
       return {
         ...state,
-        isLoadingGadget: false,
-        gadgets: action.payload,
-      };
-      case "API_ERROR_GADGET":
-        return {
-          ...state,
-          isLoadingGadget: false,
-          isErrorGadget: true,
-        };
-    case "API_LOADING_PRODUCT":
-      return {
-        ...state,
-        isLoadingProduct: true,
-      };
-    case "API_SUCCESS_PRODUCT":
-      return {
-        ...state,
-        isLoadingProduct: false,
+        isLoading: false,
         products: action.payload,
       };
-   
-      case "API_ERROR_PRODUCT":
+    case "ALL_DATA_ERROR":
       return {
         ...state,
-        isLoadingProducts: false,
-        isErrorProduct: true,
+        isLoading: false,
+        isError: true,
       };
-
     default:
       return state;
   }
