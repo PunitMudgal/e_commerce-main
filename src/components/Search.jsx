@@ -1,32 +1,32 @@
 import { FaSearch } from "react-icons/fa";
-import { UseFilterContext } from "../context/Filtercontext";
+import { UseProductContext } from "../context/ProductContext";
+import { useState } from "react";
 
 function Search() {
-  const {
-    text,
-    handleSearch,
-  } = UseFilterContext();
+  const { categoriesProducts } = UseProductContext();
+  const [input, setInput] = useState('');
 
-  // const handleSearchKey = (e) => {
-  //   e.code === "Enter" && handleSearch();
-  // };
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    // categoriesProducts(input); not this
+  }
 
-  console.log("text ->", text);
   return (
     <div className="flex border p-2 gap-1 border-slate-900 rounded-md">
-      <form action="" className="flex" onSubmit={(e) => e.preventDefault()} >
-      <FaSearch onClick={handleSearch} size={22} />
-      <input
-        value={text}
-        name="text"
-        onChange={handleSearch}
-        className="border-none outline-none bg-transparent"
-        type="text"
-        placeholder="Search Product.."
-      />
+      <form action="submit" className="flex" onSubmit={handleSubmit}>
+        <FaSearch size={22} />
+        <input
+          value={input}
+          name="text"
+          onChange={(e) => setInput(e.target.value)}
+          className="border-none outline-none bg-transparent"
+          type="text"
+          placeholder="Search Product.."
+        />
       </form>
     </div>
   );
 }
 
 export default Search;
+ 

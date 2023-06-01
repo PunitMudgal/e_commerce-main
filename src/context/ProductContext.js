@@ -9,6 +9,7 @@ const initialState = {
   isError: false,
   isLoading: false,
   products: [],
+  filterProduct: []
 };
 
 const ProductProvider = ({ children }) => {
@@ -28,13 +29,23 @@ const ProductProvider = ({ children }) => {
       console.log(error);
     }
   }
-
+  
   useEffect(() => {
     getAllData(apiKey1,apiKey2)
   }, []);
 
+// categories 
+const categoriesProducts = (cat) => {
+    let value = cat;
+  dispatch({type:"SET_CATEGORIES", payload:value});
+}
+
+const ClearFilter = () => {
+  dispatch({type:"CLEAR_FILTERS", payload:state.products})
+}
+
   return (
-    <ProductContext.Provider value={{ ...state }}>
+    <ProductContext.Provider value={{ ...state,categoriesProducts, ClearFilter }}>
       {children}
     </ProductContext.Provider>
   );

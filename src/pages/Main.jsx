@@ -6,9 +6,10 @@ import Loading from "../components/Loading";
 import Sorting from "../components/Sorting";
 import Search from "../components/Search";
 import Error from "../components/Error";
+import Categories from "../components/Categories";
 
 function Main() {
-  const { products, isLoading, isError } = UseProductContext();
+  const { products, isLoading, isError,filterProduct } = UseProductContext();
   return (
     <>
       {isLoading ? (
@@ -16,7 +17,7 @@ function Main() {
       ) : (
         <div className="p-10 md:p-4 bg-gray-50">
           <div className="flex justify-evenly md:flex-col">
-            <div className="">Categories</div>
+            <div className=""><Categories/></div>
             <div>
               <div className="flex justify-around items-center md:flex-col gap-2 mb-6">
                 <div className="flex gap-4 md:hidden">
@@ -24,7 +25,7 @@ function Main() {
                   <FaStream size={30} />
                   {!isLoading && (
                     <p className="font-text1 font-bold text-green-600">
-                      {products.length} Products Found
+                      {filterProduct.length} Products Found
                     </p>
                   )}
                 </div>
@@ -35,7 +36,7 @@ function Main() {
                 <Error />
               ) : (
                 <div className="grid grid-cols-3 gap-4 md:gap-1 md:grid-cols-2">
-                  {products.map((product) => (
+                  {filterProduct.map((product) => (
                     <Product key={product.id} {...product} />
                   ))}
                 </div>
