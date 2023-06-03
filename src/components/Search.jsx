@@ -3,17 +3,24 @@ import { UseProductContext } from "../context/ProductContext";
 import { useState } from "react";
 
 function Search() {
-  const { categoriesProducts } = UseProductContext();
-  const [input, setInput] = useState('');
-
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    // categoriesProducts(input); not this
-  }
+  // const { serachProducts, filterProduct } = UseProductContext();
+  const [input, setInput] = useState("");
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   // serachProducts(input)
+  //   // let naam = filterProduct.title||filterProduct.name;
+  //   // console.log(naam);
+  // let searchedPRod = filterProduct.filter((prod) => prod.title || prod.name === input);
+  //  console.log('searched', searchedPRod)
+  // };
 
   return (
     <div className="flex border p-2 gap-1 border-slate-900 rounded-md">
-      <form action="submit" className="flex" onSubmit={handleSubmit}>
+      <form
+        action="submit"
+        className="flex"
+        //  onSubmit={handleSubmit}
+      >
         <FaSearch size={22} />
         <input
           value={input}
@@ -29,4 +36,3 @@ function Search() {
 }
 
 export default Search;
- 

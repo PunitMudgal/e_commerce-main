@@ -1,4 +1,10 @@
-import { createContext, useContext, useReducer, useEffect } from "react";
+import {
+  createContext,
+  useContext,
+  useReducer,
+  useEffect,
+  useState,
+} from "react";
 import axios from "axios";
 import reducer from "../reducer/ProductReducer";
 
@@ -9,43 +15,69 @@ const initialState = {
   isError: false,
   isLoading: false,
   products: [],
-  filterProduct: []
+  filterProduct: [],
+  sorting_value: "default",
 };
 
 const ProductProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const getAllData = async(key1, key2) => {
-    dispatch({type: "ALL_DATA_LOADING"})
-    try{
+  const getAllData = async (key1, key2) => {
+    dispatch({ type: "ALL_DATA_LOADING" });
+    try {
       const response1 = await axios.get(key1);
       const response2 = await axios.get(key2);
       const data1 = await response1.data;
       const data2 = await response2.data;
-      dispatch({type: "ALL_DATA_SUCCESS", payload: [...data1,...data2]})
-    }
-    catch(error){
-      dispatch({type: "ALL_DATA_ERROR"})
+      dispatch({ type: "ALL_DATA_SUCCESS", payload: [...data1, ...data2] });
+    } catch (error) {
+      dispatch({ type: "ALL_DATA_ERROR" });
       console.log(error);
     }
-  }
-  
+  };
+
   useEffect(() => {
-    getAllData(apiKey1,apiKey2)
+    getAllData(apiKey1, apiKey2);
   }, []);
 
-// categories 
-const categoriesProducts = (cat) => {
-    let value = cat;
-  dispatch({type:"SET_CATEGORIES", payload:value});
-}
+  // categories
+  const categoriesProducts = (cat) => {
+    dispatch({ type: "SET_CATEGORIES", payload: cat });
+  };
 
-const ClearFilter = () => {
-  dispatch({type:"CLEAR_FILTERS", payload:state.products})
-}
+  // search products
+  const serachProducts = (text) => {
+    dispatch({ type: "SET_SEARCH_PRODUCT", payload: text });
+  };
+
+  // sorting products
+  // get values from input options
+  const getSortingValues = (e) => {
+    let values = e.target.value;
+    dispatch({ type: "GET_SORTING_VALUE", payload: values });
+    SortProducts();
+  };
+
+  const SortProducts = () => {
+    dispatch({ type: "SORTING_PRODUCTS" });
+  };
+
+  //clear filters
+  const ClearFilter = () => {
+    dispatch({ type: "CLEAR_FILTERS", payload: state.products });
+  };
+
 
   return (
-    <ProductContext.Provider value={{ ...state,categoriesProducts, ClearFilter }}>
+    <ProductContext.Provider
+      value={{
+        ...state,
+        categoriesProducts,
+        ClearFilter,
+        serachProducts,
+        getSortingValues,
+      }}
+    >
       {children}
     </ProductContext.Provider>
   );
