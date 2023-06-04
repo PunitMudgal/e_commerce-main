@@ -20,6 +20,18 @@ const ProductReducer = (state, action) => {
         isError: true,
       };
 
+      case "SET_LIST_VIEW":
+        return{
+          ...state,
+          gridView:false
+        }
+
+        case "SET_GRID_VIEW":
+          return{
+            ...state,
+            gridView: true
+          }
+
     case "SET_CATEGORIES":
       const { products } = state;
       let categoriesOfProducts;
@@ -75,7 +87,6 @@ const ProductReducer = (state, action) => {
       let newData;
 
       // searching products
-      // if(search !== "")
       newData = tempData.filter((prod) => {
         return prod.description?.toLowerCase().includes(search.toLowerCase());
       });

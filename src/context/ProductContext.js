@@ -11,6 +11,7 @@ const initialState = {
   products: [],
   filterProduct: [],
   products2: [],
+  gridView: true,
   filter: {
     search: "",
     sorting_value: "default",
@@ -41,6 +42,14 @@ const ProductProvider = ({ children }) => {
     getAllData(apiKey1, apiKey2);
   }, []);
 
+  const setListView = () => {
+    dispatch({type: "SET_LIST_VIEW"});
+  }
+
+  const setGridView = () => {
+    dispatch({type: "SET_GRID_VIEW"});
+  }
+
   // categories
   const categoriesProducts = (cat) => {
     dispatch({ type: "SET_CATEGORIES", payload: cat });
@@ -59,15 +68,14 @@ const ProductProvider = ({ children }) => {
     dispatch({ type: "GET_SORTING_VALUE", payload: { name, value } });
     SortProducts();
   };
-
-  useEffect(() => {
-    console.log('sorting called')
-    dispatch({type: "SEARCHING_PRODUCTS"})
-  },[state.filter.price, state.filter.search])
-
+  
   const SortProducts = () => {
     dispatch({ type: "SORTING_PRODUCTS" });
   };
+
+  useEffect(() => {
+    dispatch({type: "SEARCHING_PRODUCTS"})
+  },[state.filter.search])
 
   //clear filters
   const ClearFilter = () => {
@@ -78,9 +86,10 @@ const ProductProvider = ({ children }) => {
     <ProductContext.Provider
       value={{
         ...state,
+        setListView,
+        setGridView,
         categoriesProducts,
         ClearFilter,
-        // serachProducts,
         getSortingValues,
       }}
     >
