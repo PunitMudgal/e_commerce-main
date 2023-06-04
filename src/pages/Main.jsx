@@ -9,7 +9,7 @@ import Error from "../components/Error";
 import Categories from "../components/Categories";
 
 function Main() {
-  const { products, isLoading, isError,filterProduct } = UseProductContext();
+  const { isLoading, isError,filterProduct } = UseProductContext();
   return (
     <>
       {isLoading ? (

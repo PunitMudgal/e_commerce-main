@@ -1,10 +1,4 @@
-import {
-  createContext,
-  useContext,
-  useReducer,
-  useEffect,
-  useState,
-} from "react";
+import { createContext, useContext, useReducer, useEffect, useState } from "react";
 import axios from "axios";
 import reducer from "../reducer/ProductReducer";
 
@@ -16,7 +10,14 @@ const initialState = {
   isLoading: false,
   products: [],
   filterProduct: [],
-  sorting_value: "default",
+  products2: [],
+  filter: {
+    search: "",
+    sorting_value: "default",
+    price: 0,
+    minPrice: 0,
+    maxPrice: 0,
+  },
 };
 
 const ProductProvider = ({ children }) => {
@@ -46,17 +47,23 @@ const ProductProvider = ({ children }) => {
   };
 
   // search products
-  const serachProducts = (text) => {
-    dispatch({ type: "SET_SEARCH_PRODUCT", payload: text });
-  };
+  // const serachProducts = (text) => {
+  //   dispatch({ type: "SET_SEARCH_PRODUCT", payload: text });
+  // };
 
   // sorting products
   // get values from input options
   const getSortingValues = (e) => {
-    let values = e.target.value;
-    dispatch({ type: "GET_SORTING_VALUE", payload: values });
+    let name = e.target.name;
+    let value = e.target.value;
+    dispatch({ type: "GET_SORTING_VALUE", payload: { name, value } });
     SortProducts();
   };
+
+  useEffect(() => {
+    console.log('sorting called')
+    dispatch({type: "SEARCHING_PRODUCTS"})
+  },[state.filter.price, state.filter.search])
 
   const SortProducts = () => {
     dispatch({ type: "SORTING_PRODUCTS" });
@@ -67,14 +74,13 @@ const ProductProvider = ({ children }) => {
     dispatch({ type: "CLEAR_FILTERS", payload: state.products });
   };
 
-
   return (
     <ProductContext.Provider
       value={{
         ...state,
         categoriesProducts,
         ClearFilter,
-        serachProducts,
+        // serachProducts,
         getSortingValues,
       }}
     >

@@ -2,8 +2,13 @@ import React from "react";
 import { UseProductContext } from "../context/ProductContext";
 
 function Categories() {
-  const { categoriesProducts, ClearFilter } = UseProductContext();
-  
+  const {
+    categoriesProducts,
+    ClearFilter,
+    getSortingValues,
+    filter: { minPrice, price, maxPrice },
+  } = UseProductContext();
+
   return (
     <div className="flex flex-col gap-3 items-start md:items-center font-text3">
       <h2 className="text-2xl font-text2 font-bold text-pink-700">
@@ -58,8 +63,23 @@ function Categories() {
       </div>
       <div>
         <h4 className="font-semibold text-lg text-green-900">Price</h4>
-        <p>todo</p>
-        {/* slider  */}
+
+        <label
+          htmlFor="minmax-range"
+          className="block mb-2 text-sm font-medium text-orange-500 "
+        >
+          {price}
+        </label>
+        <input
+          id="minmax-range"
+          type="range"
+          name="price"
+          min={minPrice}
+          max={maxPrice}
+          value={price}
+          onChange={getSortingValues}
+          className="w-full h-2 bg-slate-500 rounded-lg appearance-none cursor-pointer "
+        />
       </div>
       <button
         onClick={ClearFilter}

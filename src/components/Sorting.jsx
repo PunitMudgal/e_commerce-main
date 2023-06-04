@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { UseProductContext } from "../context/ProductContext";
 
 function Sorting() {
@@ -8,14 +8,14 @@ function Sorting() {
     <div className="flex items-center">
       <p className="font-text1 font-bold text-orange-600">Sort By:</p>
       <select
-      defaultValue={'default'}
+        defaultValue={"default"}
         onClick={getSortingValues}
         className="font-text1 font-bold bg-transparent border"
-        name="sort"
+        name="sorting_value"
         id="sort"
       >
-        <option disabled className="font-bold text-white bg-blue-500" value="default">
-         None
+        <option className="font-bold text-white bg-blue-500" value="default">
+          None
         </option>
         <option className="hidden" value="#" disabled></option>
 

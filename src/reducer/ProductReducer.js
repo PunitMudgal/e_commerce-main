@@ -11,6 +11,7 @@ const ProductReducer = (state, action) => {
         isLoading: false,
         products: action.payload,
         filterProduct: action.payload,
+        products2: action.payload,
       };
     case "ALL_DATA_ERROR":
       return {
@@ -21,7 +22,8 @@ const ProductReducer = (state, action) => {
 
     case "SET_CATEGORIES":
       const { products } = state;
-      const categoriesOfProducts = products.filter(
+      let categoriesOfProducts;
+      categoriesOfProducts = products.filter(
         (prod) => prod.category === action.payload
       );
       return {
@@ -30,18 +32,20 @@ const ProductReducer = (state, action) => {
       };
 
     case "GET_SORTING_VALUE":
+      const { name, value } = action.payload;
       return {
         ...state,
-        sorting_value: action.payload,
+        filter: { ...state.filter, [name]: value },
       };
 
     case "SORTING_PRODUCTS":
       let newSortData;
-      const { filterProduct, sorting_value } = state;
+      const { filterProduct } = state;
+      const { sorting_value } = state.filter;
       let tempSortProduct = [...filterProduct];
 
       const sortingProducts = (a, b) => {
-        if (sorting_value === "default") return null;
+        if (sorting_value === "default") return undefined;
 
         if (sorting_value === "lowest") {
           return a.price - b.price;
@@ -55,29 +59,52 @@ const ProductReducer = (state, action) => {
         if (sorting_value === "z-a") {
           return b.name || b.title.localeCompare(a.name || a.title);
         }
-        console.log('--> inside <--')
       };
-      console.log('filterproduce',filterProduct)
       newSortData = tempSortProduct.sort(sortingProducts);
+
+     
       return {
         ...state,
         filterProduct: newSortData,
       };
 
-    // case "SET_SEARCH_PRODUCT":
-    //   const { products } = state;
-    //   const searchProduct = products.filter((prod) => {
-    //     return prod.name||prod.title === action.payload;
-    //   });
-    //   return {
-    //     ...state,
-    //     filterProduct: searchProduct,
-    //   };
+    case "SEARCHING_PRODUCTS":
+      const { products2 } = state;
+      let tempData = [...products2];
+      const { search,price } = state.filter;
+      let newData;
+
+      // searching products
+      // if(search !== "")
+      newData = tempData.filter((prod) => {
+        return prod.description?.toLowerCase().includes(search.toLowerCase());
+      });
+
+      //price slider
+      // if (price === 0) {
+      //   tempData = tempData.filter(
+      //     (prod) => prod.price === price
+      //   );
+      // } else {
+      //   tempData = tempData.filter((prod) => prod.price <= price);
+      // }
+      // newData = tempData;
+      return{
+        ...state,
+        filterProduct: newData
+      }
 
     case "CLEAR_FILTERS":
       return {
         ...state,
         filterProduct: action.payload,
+        filter: {
+          search: "",
+          sorting_value: "default",
+          price: 0,
+          minPrice: 0,
+          maxPrice: 0,
+        },
       };
 
     default:
