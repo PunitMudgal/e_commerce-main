@@ -20,17 +20,37 @@ const ProductReducer = (state, action) => {
         isError: true,
       };
 
-      case "SET_LIST_VIEW":
-        return{
-          ...state,
-          gridView:false
-        }
+    case "SINGLE_PRODUCT_LOADING":
+      return {
+        ...state,
+        isSingleLoading: true,
+      };
 
-        case "SET_GRID_VIEW":
-          return{
-            ...state,
-            gridView: true
-          }
+    case "SINGLE_PRODUCT_SUCCESS":
+      return {
+        ...state,
+        isSingleLoading: false,
+        singleProduct: action.payload,
+      };
+
+    case "SINGLE_PRODUCT_ERROR":
+      return {
+        ...state,
+        isSingleError: true,
+        isSingleLoading: false,
+      };
+
+    case "SET_LIST_VIEW":
+      return {
+        ...state,
+        gridView: false,
+      };
+
+    case "SET_GRID_VIEW":
+      return {
+        ...state,
+        gridView: true,
+      };
 
     case "SET_CATEGORIES":
       const { products } = state;
@@ -74,7 +94,6 @@ const ProductReducer = (state, action) => {
       };
       newSortData = tempSortProduct.sort(sortingProducts);
 
-     
       return {
         ...state,
         filterProduct: newSortData,
@@ -83,7 +102,7 @@ const ProductReducer = (state, action) => {
     case "SEARCHING_PRODUCTS":
       const { products2 } = state;
       let tempData = [...products2];
-      const { search,price } = state.filter;
+      const { search, price } = state.filter;
       let newData;
 
       // searching products
@@ -100,10 +119,10 @@ const ProductReducer = (state, action) => {
       //   tempData = tempData.filter((prod) => prod.price <= price);
       // }
       // newData = tempData;
-      return{
+      return {
         ...state,
-        filterProduct: newData
-      }
+        filterProduct: newData,
+      };
 
     case "CLEAR_FILTERS":
       return {

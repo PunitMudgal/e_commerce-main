@@ -1,6 +1,7 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-function ListView({ title, name, price, image, description }) {
+function ListView({ title, name, price, image, description, id }) {
   const CutTheLength = (str, num) => {
     if (str.length > num) {
       return str.slice(0, num) + "...";
@@ -10,7 +11,10 @@ function ListView({ title, name, price, image, description }) {
   };
 
   return (
-    <div className="shadow-lg flex rounded-lg bg-white border border-gray-200 p-2 font-text-3 hover:bg-blue-100">
+    <Link
+      to={`/singleProduct/${id}`}
+      className="shadow-lg flex rounded-lg bg-white border border-gray-200 p-2 font-text-3 hover:bg-blue-100"
+    >
       <div className=" p-3 rounded-md">
         <img
           className="h-60 rounded-md object-fill w-[20vw]"
@@ -30,7 +34,7 @@ function ListView({ title, name, price, image, description }) {
           Add To Cart
         </button>
       </div>
-    </div>
+    </Link>
   );
 }
 

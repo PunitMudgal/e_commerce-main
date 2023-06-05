@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { FaShoppingCart, FaEllipsisV } from "react-icons/fa";
 import { GrClose } from "react-icons/gr";
+import { Link } from "react-router-dom";
 
 function Header() {
   const [toggleMenu, setToggleMenu] = useState(false);
@@ -8,12 +9,12 @@ function Header() {
   return (
     <div className="w-full p-8 md:p-5 md:text-md text-lg bg-blue-950 text-white font-text1 sticky top-0 z-10">
       <div className="justify-evenly items-center flex md:hidden">
-        <p className="text-2xl">
+        <Link to="/" className="text-2xl">
           e<span className="text-orange-500">Shop</span>.
-        </p>
+        </Link>
         <div className="flex items-center gap-2">
           <a href="/">Home</a>
-          <a href="/">Contact Us</a>
+          <a href="/contact">Contact Us</a>
         </div>
         <div className="flex items-center gap-2">
           <img src="" alt="not" />
@@ -47,7 +48,7 @@ function Header() {
               onClick={() => setToggleMenu(false)}
             />
             <a href="/">Home</a>
-            <a href="/">Contact Us</a>
+            <a href="/contact">Contact Us</a>
             <span>UserName</span>
             <a href="/">My Orders</a>
             <a href="/">Login</a>

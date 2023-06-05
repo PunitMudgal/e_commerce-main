@@ -1,4 +1,9 @@
-import { createContext, useContext, useReducer, useEffect, useState } from "react";
+import {
+  createContext,
+  useContext,
+  useReducer,
+  useEffect,
+} from "react";
 import axios from "axios";
 import reducer from "../reducer/ProductReducer";
 
@@ -9,6 +14,9 @@ const initialState = {
   isError: false,
   isLoading: false,
   products: [],
+  isSingleError: false,
+  singleProduct: {},
+  isSingleLoading: false,
   filterProduct: [],
   products2: [],
   gridView: true,
@@ -38,17 +46,29 @@ const ProductProvider = ({ children }) => {
     }
   };
 
+  const getSingleData = async (URL1) => {
+    dispatch({ type: "SINGLE_PRODUCT_LOADING" });
+    try {
+      const res = await axios.get(URL1);
+      const singleProductData = await res.data;
+      dispatch({ type: "SINGLE_PRODUCT_SUCCESS", payload:singleProductData });
+    } catch (error) {
+      console.log(error);
+      dispatch({ type: "SINGLE_PRODUCT_ERROR" });
+    }
+  };
+
   useEffect(() => {
     getAllData(apiKey1, apiKey2);
   }, []);
 
   const setListView = () => {
-    dispatch({type: "SET_LIST_VIEW"});
-  }
+    dispatch({ type: "SET_LIST_VIEW" });
+  };
 
   const setGridView = () => {
-    dispatch({type: "SET_GRID_VIEW"});
-  }
+    dispatch({ type: "SET_GRID_VIEW" });
+  };
 
   // categories
   const categoriesProducts = (cat) => {
@@ -68,14 +88,14 @@ const ProductProvider = ({ children }) => {
     dispatch({ type: "GET_SORTING_VALUE", payload: { name, value } });
     SortProducts();
   };
-  
+
   const SortProducts = () => {
     dispatch({ type: "SORTING_PRODUCTS" });
   };
 
   useEffect(() => {
-    dispatch({type: "SEARCHING_PRODUCTS"})
-  },[state.filter.search])
+    dispatch({ type: "SEARCHING_PRODUCTS" });
+  }, [state.filter.search]);
 
   //clear filters
   const ClearFilter = () => {
@@ -86,6 +106,7 @@ const ProductProvider = ({ children }) => {
     <ProductContext.Provider
       value={{
         ...state,
+        getSingleData,
         setListView,
         setGridView,
         categoriesProducts,

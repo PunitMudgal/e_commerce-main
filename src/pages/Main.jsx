@@ -14,7 +14,9 @@ function Main() {
   return (
     <>
       {isLoading ? (
+        <div className="flex items-center justify-center min-h-screen">
         <Loading />
+        </div>
       ) : (
         <div className="p-10 md:p-4 bg-gray-50">
           <div className="flex justify-evenly md:flex-col">
