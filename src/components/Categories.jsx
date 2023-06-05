@@ -11,7 +11,7 @@ function Categories() {
 
   return (
     <div className="flex flex-col gap-3 items-start md:items-center font-text3">
-      <h2 className="text-2xl font-text2 font-bold text-pink-700">
+      <h2 className="text-2xl font-text2 font-bold text-[#3498DB] uppercase">
         Categories
       </h2>
       <div className="flex flex-col items-start md:items-center text-slate-800 gap-1 font-semibold ">
@@ -83,7 +83,7 @@ function Categories() {
       </div>
       <button
         onClick={ClearFilter}
-        className="rounded-sm px-2 py-1 font-text1 text-white bg-orange-600"
+        className="rounded-md font-bold font-text1 px-2 py-1 text-white bg-[#E74C3C] hover:bg-[#C62828] md:mb-2"
       >
         Clear Filters
       </button>

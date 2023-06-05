@@ -7,7 +7,7 @@ module.exports = {
     extend: {
       fontFamily:{
         text1: [ 'Karla','sans-serif'],
-        text2: ['PT Sans', 'sans-serif'],
+        text2: ['PT Sans', 'sans-serif'], // better
         text3: ['Wix Madefor Text','sans-serif']
       }
     },

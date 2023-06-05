@@ -6,7 +6,7 @@ function Search() {
   // const [input, setInput] = useState("");
  
   return (
-    <div className="flex border p-2 gap-1 border-slate-900 rounded-md">
+    <div className="flex border-2 p-2 gap-1 border-slate-900 rounded-md">
       <form
         action="submit"
         className="flex"

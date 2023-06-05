@@ -3,14 +3,14 @@ import React from "react";
 function Product({ title, name, price, image }) {
   return (
     <>
-      <div className="bg-slate-100 flex flex-col w-72 md:w-40 p-2 box-shadow gap-2 font-text1 rounded-lg hover:bg-blue-100">
+      <div className="bg-white flex flex-col w-72 md:w-40 p-2 box-shadow gap-2 font-text1 rounded-lg hover:bg-blue-100">
         <div className="h-full w-full bg-white flex justify-center items-center">
           <img className="object-cover rounded-md h-52 md:h-36" src={image} alt="laptop" />
         </div>
         <hr />
         <p className="text-orange-600">${price > 1200 ? price / 100 : price}</p>
-        <p>{title || name}</p>
-        <button className="rounded-sm bg-orange-600 text-center text-white">
+        <p className="font-bold uppercase font-text2">{title || name}</p>
+        <button className="rounded-sm bg-[#16A085] text-center text-white">
           Add To Cart
         </button>
       </div>

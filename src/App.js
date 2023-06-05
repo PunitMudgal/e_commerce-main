@@ -1,4 +1,3 @@
-import './App.css';
 import Header from './components/Header';
 import { ProductProvider } from './context/ProductContext';
 import Home from './pages/Home'

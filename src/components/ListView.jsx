@@ -26,7 +26,7 @@ function ListView({ title, name, price, image, description }) {
         <p className=" flex max-w-md flex-wrap">
           {CutTheLength(description, 260)}
         </p>
-        <button className="bg-orange-500 text-white font-bold  px-1 rounded-md py-2 ">
+        <button className="bg-[#16A085] text-white font-bold  px-1 rounded-md py-2 ">
           Add To Cart
         </button>
       </div>
