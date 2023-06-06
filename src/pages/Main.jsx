@@ -18,7 +18,7 @@ function Main() {
         <Loading />
         </div>
       ) : (
-        <div className="p-10 md:p-4 bg-gray-50">
+        <div id="products" className="p-10 md:p-4 bg-gray-50">
           <div className="flex justify-evenly md:flex-col">
             <div className="">
               <Categories />

@@ -75,11 +75,6 @@ const ProductProvider = ({ children }) => {
     dispatch({ type: "SET_CATEGORIES", payload: cat });
   };
 
-  // search products
-  // const serachProducts = (text) => {
-  //   dispatch({ type: "SET_SEARCH_PRODUCT", payload: text });
-  // };
-
   // sorting products
   // get values from input options
   const getSortingValues = (e) => {
