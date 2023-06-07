@@ -104,8 +104,6 @@ const FilterReducer = (state, action) => {
           search: "",
           sorting_value: "default",
           price: 0,
-          minPrice: 0,
-          maxPrice: 0,
         },
       };
 

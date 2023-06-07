@@ -1,4 +1,5 @@
 import Header from "./components/Header";
+import { AuthProvider } from "./context/AuthContext";
 import { FilterProductProvider } from "./context/FilterContext";
 import { ProductProvider } from "./context/ProductContext";
 import Contact from "./pages/Contact";
@@ -10,6 +11,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 function App() {
   return (
     <>
+    <AuthProvider>
       <ProductProvider>
         <FilterProductProvider>
         <Router>
@@ -29,6 +31,7 @@ function App() {
         </Router>
         </FilterProductProvider>
       </ProductProvider>
+      </AuthProvider>
     </>
   );
 }

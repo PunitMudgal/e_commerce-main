@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { UseProductContext } from "../context/ProductContext";
 import { HiOutlineArrowNarrowLeft } from "react-icons/hi";
 import Loading from "../components/Loading";
@@ -12,6 +12,8 @@ function SingleProduct() {
     UseProductContext();
   const { id } = useParams();
 
+  const navigate = useNavigate()
+
   useEffect(() => {
     if (Number(id) <= 20 && Number(id) >= 1) {
       getSingleData(`${api1}/${id}`);
@@ -19,13 +21,14 @@ function SingleProduct() {
       getSingleData(`${api2}?id=${id}`);
     }
   }, []);
+
   return (
-    <div className="bg-gray-100">
+    <div className="bg-gray-100 min-h-screen">
       <h1 className="uppercase px-8 py-3 font-text3 font-bold text-gray-800 text-2xl md:text-xl">
         Product Details
       </h1>
       <Link
-        to="/#products"
+        to="/"
         className="flex  items-center font-text1 font-semibold px-8"
       >
         <HiOutlineArrowNarrowLeft /> Back To Products
@@ -34,7 +37,7 @@ function SingleProduct() {
       {isSingleLoading ? (
         <Loading />
       ) : (
-        <div className="flex md:flex-col gap-6 p-8 md:p-1 mx-40 md:mx-auto md:justify-center md:items-center font-text3">
+        <div className="flex md:flex-col gap-6 p-8 md:p-1 mx-40 md:mx-auto md:justify-center md:items-center font-text3 border box-shadow rounded-md">
           {" "}
           {isSingleError ? (
             <Error />
@@ -44,13 +47,13 @@ function SingleProduct() {
               <div className="flex justify-center items-center bg-white border rounded-md border-gray-600 w-[30rem] h-[30rem] md:w-[17rem] md:h-[17rem] ">
                 {singleProduct.name ? (
                   <img
-                    className="object-cover  rounded-lg w-[25rem] h-[25rem] md:w-[16rem] md:h-[16rem] "
+                    className="object-cover shadow-md rounded-lg w-[25rem] h-[25rem] md:w-[16rem] md:h-[16rem] "
                     src={singleProduct.image[0].url}
                     alt={singleProduct.name}
                   />
                 ) : (
                   <img
-                    className="object-contain rounded-lg w-[25rem] h-[25rem] md:w-[16rem] md:h-[16rem] "
+                    className="object-contain shadow-md rounded-lg w-[25rem] h-[25rem] md:w-[16rem] md:h-[16rem] "
                     src={singleProduct.image}
                     alt={singleProduct.title}
                   />
@@ -85,7 +88,7 @@ function SingleProduct() {
                 <p className="font-text1 text-slate-600 text-lg md:text-md text-justify">
                   {singleProduct.description}
                 </p>
-                <button className="rounded-md p-2 md:p-1 font-bold text-white bg-[#F39C12] hover:bg-[#CA6F1E]">
+                <button className="rounded-md shadow-md p-2 md:p-1 font-bold text-white bg-[#F39C12] hover:bg-[#CA6F1E]">
                   Add To Cart
                 </button>
               </div>{" "}

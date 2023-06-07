@@ -13,7 +13,7 @@ function ListView({ title, name, price, image, description, id }) {
   return (
     <Link
       to={`/singleProduct/${id}`}
-      className="shadow-lg flex rounded-lg bg-white border border-gray-200 p-2 font-text-3 hover:bg-blue-100"
+      className="box-shadow flex rounded-lg bg-white border border-gray-200 p-2 font-text-3 hover:bg-blue-100"
     >
       <div className=" p-3 rounded-md">
         <img
