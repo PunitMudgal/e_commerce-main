@@ -1,8 +1,7 @@
-import React, { useState } from "react";
-import { UseProductContext } from "../context/ProductContext";
+import { UseFilterContext } from "../context/FilterContext";
 
 function Sorting() {
-  const { getSortingValues } = UseProductContext();
+  const { getSortingValues } = UseFilterContext();
 
   return (
     <div className="flex items-center">

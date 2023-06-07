@@ -17,16 +17,17 @@ const initialState = {
   isSingleError: false,
   singleProduct: {},
   isSingleLoading: false,
-  filterProduct: [],
-  products2: [],
-  gridView: true,
-  filter: {
-    search: "",
-    sorting_value: "default",
-    price: 0,
-    minPrice: 0,
-    maxPrice: 0,
-  },
+
+  // filterProduct: [],
+  // products2: [],
+  // gridView: true,
+  // filter: {
+  //   search: "",
+  //   sorting_value: "default",
+  //   price: 0,
+  //   minPrice: 0,
+  //   maxPrice: 0,
+  // },
 };
 
 const ProductProvider = ({ children }) => {
@@ -62,51 +63,52 @@ const ProductProvider = ({ children }) => {
     getAllData(apiKey1, apiKey2);
   }, []);
 
-  const setListView = () => {
-    dispatch({ type: "SET_LIST_VIEW" });
-  };
+  
+  // const setListView = () => {
+  //   dispatch({ type: "SET_LIST_VIEW" });
+  // };
 
-  const setGridView = () => {
-    dispatch({ type: "SET_GRID_VIEW" });
-  };
+  // const setGridView = () => {
+  //   dispatch({ type: "SET_GRID_VIEW" });
+  // };
 
-  // categories
-  const categoriesProducts = (cat) => {
-    dispatch({ type: "SET_CATEGORIES", payload: cat });
-  };
+  // // categories
+  // const categoriesProducts = (cat) => {
+  //   dispatch({ type: "SET_CATEGORIES", payload: cat });
+  // };
 
-  // sorting products
-  // get values from input options
-  const getSortingValues = (e) => {
-    let name = e.target.name;
-    let value = e.target.value;
-    dispatch({ type: "GET_SORTING_VALUE", payload: { name, value } });
-    SortProducts();
-  };
+  // // sorting products
+  // // get values from input options
+  // const getSortingValues = (e) => {
+  //   let name = e.target.name;
+  //   let value = e.target.value;
+  //   dispatch({ type: "GET_SORTING_VALUE", payload: { name, value } });
+  //   SortProducts();
+  // };
 
-  const SortProducts = () => {
-    dispatch({ type: "SORTING_PRODUCTS" });
-  };
+  // const SortProducts = () => {
+  //   dispatch({ type: "SORTING_PRODUCTS" });
+  // };
 
-  useEffect(() => {
-    dispatch({ type: "SEARCHING_PRODUCTS" });
-  }, [state.filter.search]);
+  // useEffect(() => {
+  //   dispatch({ type: "SEARCHING_PRODUCTS" });
+  // }, [state.filter.search]);
 
-  //clear filters
-  const ClearFilter = () => {
-    dispatch({ type: "CLEAR_FILTERS", payload: state.products });
-  };
+  // //clear filters
+  // const ClearFilter = () => {
+  //   dispatch({ type: "CLEAR_FILTERS", payload: state.products });
+  // };
 
   return (
     <ProductContext.Provider
       value={{
         ...state,
         getSingleData,
-        setListView,
-        setGridView,
-        categoriesProducts,
-        ClearFilter,
-        getSortingValues,
+        // setListView,
+        // setGridView,
+        // categoriesProducts,
+        // ClearFilter,
+        // getSortingValues,
       }}
     >
       {children}

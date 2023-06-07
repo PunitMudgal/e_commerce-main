@@ -1,8 +1,8 @@
 import { FaSearch } from "react-icons/fa";
-import { UseProductContext } from "../context/ProductContext";
+import { UseFilterContext } from "../context/FilterContext";
 
 function Search() {
-  const { getSortingValues,filter:{search} } = UseProductContext();
+  const { getSortingValues,filter:{search} } = UseFilterContext();
   // const [input, setInput] = useState("");
  
   return (

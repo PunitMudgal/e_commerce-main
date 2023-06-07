@@ -1,5 +1,5 @@
 import React from "react";
-import Product from "../components/Product";
+// import Product from "../components/Product";
 import { FaThLarge, FaStream } from "react-icons/fa";
 import { UseProductContext } from "../context/ProductContext";
 import Loading from "../components/Loading";
@@ -8,9 +8,11 @@ import Search from "../components/Search";
 import Error from "../components/Error";
 import Categories from "../components/Categories";
 import ViewType from "../components/ViewType";
+import { UseFilterContext } from "../context/FilterContext";
 
 function Main() {
-  const { isLoading, isError, filterProduct, setGridView, setListView, gridView } = UseProductContext();
+  const { isLoading, isError,} = UseProductContext();
+  const{ filterProduct, setGridView, setListView, gridView } = UseFilterContext()
   return (
     <>
       {isLoading ? (

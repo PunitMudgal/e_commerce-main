@@ -1,14 +1,14 @@
 import React from "react";
-import { UseProductContext } from "../context/ProductContext";
 import Product from "./Product";
 import ListView from "./ListView";
+import { UseFilterContext } from "../context/FilterContext";
 
 function ViewType() {
-  const { filterProduct, gridView } = UseProductContext();
+  const { filterProduct, gridView } = UseFilterContext();
 
   if (gridView === true) {
     return (
-      <div className="grid grid-cols-3 gap-4 md:gap-1 md:grid-cols-2">
+      <div key={filterProduct.id} className="grid grid-cols-3 gap-4 md:gap-1 md:grid-cols-2">
         {filterProduct.map((product) => (
           <Product key={product.id} {...product} />
         ))}

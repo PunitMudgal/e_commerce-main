@@ -1,4 +1,5 @@
 import Header from "./components/Header";
+import { FilterProductProvider } from "./context/FilterContext";
 import { ProductProvider } from "./context/ProductContext";
 import Contact from "./pages/Contact";
 import Home from "./pages/Home";
@@ -10,6 +11,7 @@ function App() {
   return (
     <>
       <ProductProvider>
+        <FilterProductProvider>
         <Router>
           <Header />
           <Routes>
@@ -25,6 +27,7 @@ function App() {
             <Route path="/contact" element={<Contact />} />
           </Routes>
         </Router>
+        </FilterProductProvider>
       </ProductProvider>
     </>
   );

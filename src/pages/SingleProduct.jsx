@@ -18,7 +18,7 @@ function SingleProduct() {
     } else {
       getSingleData(`${api2}?id=${id}`);
     }
-  }, [id]);
+  }, []);
   return (
     <div className="bg-gray-100">
       <h1 className="uppercase px-8 py-3 font-text3 font-bold text-gray-800 text-2xl md:text-xl">
@@ -34,29 +34,29 @@ function SingleProduct() {
       {isSingleLoading ? (
         <Loading />
       ) : (
-        <div className="flex md:flex-col gap-6 p-8 md:p-2 mx-40 font-text3">
+        <div className="flex md:flex-col gap-6 p-8 md:p-1 mx-40 md:mx-auto md:justify-center md:items-center font-text3">
           {" "}
           {isSingleError ? (
             <Error />
           ) : (
             <>
               {" "}
-              <div className="flex justify-center items-center bg-white border rounded-md border-gray-600 w-[30rem] h-[30rem]">
+              <div className="flex justify-center items-center bg-white border rounded-md border-gray-600 w-[30rem] h-[30rem] md:w-[17rem] md:h-[17rem] ">
                 {singleProduct.name ? (
                   <img
-                    className="object-cover  rounded-lg w-[25rem] h-[25rem] "
+                    className="object-cover  rounded-lg w-[25rem] h-[25rem] md:w-[16rem] md:h-[16rem] "
                     src={singleProduct.image[0].url}
                     alt={singleProduct.name}
                   />
                 ) : (
                   <img
-                    className="object-contain rounded-lg w-[25rem] h-[25rem] "
+                    className="object-contain rounded-lg w-[25rem] h-[25rem] md:w-[16rem] md:h-[16rem] "
                     src={singleProduct.image}
                     alt={singleProduct.title}
                   />
                 )}
               </div>
-              <div className="flex flex-col flex-1 justify-around">
+              <div className="flex flex-col flex-1 justify-around md:px-10 md:justify-center md:items-center">
                 <div className="flex flex-col gap-3 md:gap-1">
                   {" "}
                   <p className="font-text2 font-bold text-xl uppercase">
@@ -75,14 +75,14 @@ function SingleProduct() {
                 </div>
                 <p>
                   <b>Rating:</b>{" "}
-                  {singleProduct.stars || singleProduct.rating.rate}
+                  {/* {singleProduct.stars ? singleProduct.stars : singleProduct.rating.rate} */}
                   /5
                 </p>
                 <p>
                   <b>Review By:</b>{" "}
-                  {singleProduct.reviews || singleProduct.rating.count}
+                  {/* {singleProduct.reviews ? singleProduct.reviews : singleProduct.rating.count} */}
                 </p>
-                <p className="font-text1 text-slate-600 text-lg md:text-md">
+                <p className="font-text1 text-slate-600 text-lg md:text-md text-justify">
                   {singleProduct.description}
                 </p>
                 <button className="rounded-md p-2 md:p-1 font-bold text-white bg-[#F39C12] hover:bg-[#CA6F1E]">

@@ -1,5 +1,5 @@
 import React from "react";
-import { UseProductContext } from "../context/ProductContext";
+import { UseFilterContext } from "../context/FilterContext";
 
 function Categories() {
   const {
@@ -7,7 +7,7 @@ function Categories() {
     ClearFilter,
     getSortingValues,
     filter: { minPrice, price, maxPrice },
-  } = UseProductContext();
+  } = UseFilterContext();
 
   return (
     <div className="flex flex-col gap-3 items-start md:items-center font-text3">
