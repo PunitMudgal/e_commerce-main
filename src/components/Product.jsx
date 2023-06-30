@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
+//!       this is grid view of the home products
 function Product({ title, name, price, image, id }) {
   return (
     <>
