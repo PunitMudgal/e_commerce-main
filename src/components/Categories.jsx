@@ -10,11 +10,11 @@ function Categories() {
   } = UseFilterContext();
 
   return (
-    <div className="flex flex-col gap-3 items-start md:items-center font-text3">
+    <div className="flex flex-col gap-3 items-start font-text3 md:items-center">
       <h2 className="text-2xl font-text2 font-bold text-[#3498DB] uppercase">
         Categories
       </h2>
-      <div className="flex flex-col items-start md:items-center text-slate-800 gap-1 font-semibold ">
+      <div className="flex flex-col items-start text-slate-800 gap-1 font-semibold md:items-center md:flex-row md:flex-wrap md:gap-4 md:justify-evenly">
         <button onClick={ClearFilter} className="border-b-2 border-gray-400">
           All
         </button>

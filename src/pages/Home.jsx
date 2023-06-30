@@ -58,7 +58,7 @@ function Home() {
           </h3>
           <p className="text-2xl md:text-md">Up to 30% off on all onsale Products</p>
           <hr />
-          <a className="bg-orange-500 rounded-md p-3 self-center" href="/">
+          <a className="bg-orange-500 rounded-md p-3 self-center" href="#products">
             Shop Now
           </a>
         </div>

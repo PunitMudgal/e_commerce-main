@@ -3,27 +3,13 @@ import { FaShoppingCart, FaEllipsisV } from "react-icons/fa";
 import { GrClose } from "react-icons/gr";
 import { Link } from "react-router-dom";
 import { UseAuthProvider } from "../context/AuthContext";
-import { doc, setDoc } from "firebase/firestore";
-import { db } from "../firebase";
 import { IoExitOutline } from "react-icons/io5";
 import avatar from "../assets/user.jpg";
 
 
 function Header() {
-  const { googleSignIn, user, logOut } = UseAuthProvider();
+  const {user, logOut } = UseAuthProvider();
   const [toggleMenu, setToggleMenu] = useState(false);
-
-  const handleGoogleSignIn = async () => {
-    try {
-      await googleSignIn();
-      setDoc(doc(db, "users", user.displayName), {
-        savedItems: [],
-      });
-    } catch (error) {
-      console.log(error);
-      alert("error detected!");
-    }
-  };
 
   const handleLogOut = async () => {
     try {
@@ -45,15 +31,16 @@ function Header() {
           <a href="/contact">Contact Us</a>
         </div>
         <div className="flex items-center gap-4 relative p-1">
-         {user && <span className="text-purple-400 "><small className="text-white">Welcome</small> {user.displayName}</span>}
-          <img className="h-8 rounded-full object-contain" src={user?.email ? user?.photoURL : avatar} alt="not" />{" "}
+         {/* {user && <span className="text-purple-400 "><small className="text-white">Welcome</small> {user.displayName}</span>} */}
+          {/* <img className="h-8 rounded-full object-contain" src={user?.email ? user?.photoURL : avatar} alt="not" />{" "} */}
           <FaShoppingCart className=" cursor-pointer" size={25} />
-          {user && <p className="absolute px-1 text-sm max-w-max top-0 right-9 rounded-full bg-red-600">1</p>}
+          {user && <p className="absolute px-1 text-sm max-w-max top-0 right-[7.3rem] rounded-full bg-red-600">0</p>}
           {user ? (
             <IoExitOutline className="text-red-500" size={25} onClick={handleLogOut} />
           ) : (
-            <button className="bg-rose-600 px-2 rounded-md font-bold" onClick={handleGoogleSignIn}>Login</button>
+            <Link to='/signup' className="bg-rose-600 px-2 rounded-md font-bold">Signup</Link>
           )}
+      <Link to='/login' className="bg-sky-600 px-2 rounded-md font-bold">Login</Link>
 
           <p className="hidden absolute top-8 right-3 bg-rose-800 rounded px-1">Logout</p>
         </div>
@@ -89,7 +76,7 @@ function Header() {
             {user ? (
               <IoExitOutline onClick={handleLogOut} />
             ) : (
-              <button onClick={handleGoogleSignIn}>Login</button>
+              <Link to='/login'>Login</Link>
             )}
           </div>
         )}

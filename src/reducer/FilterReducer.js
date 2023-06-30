@@ -103,7 +103,7 @@ const FilterReducer = (state, action) => {
         filter: {
           search: "",
           sorting_value: "default",
-          price: 0,
+          // price: 0,
         },
       };
 
