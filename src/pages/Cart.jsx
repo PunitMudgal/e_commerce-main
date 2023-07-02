@@ -5,25 +5,25 @@ import { UseProductContext } from "../context/ProductContext";
 import { doc, updateDoc } from "firebase/firestore";
 import { db } from "../firebase";
 import { UseAuthProvider } from "../context/AuthContext";
+import Alert from "../components/Alert";
 
 function Cart() {
-  const { cartProducts} = UseProductContext();
+  const { cartProducts, Notification} = UseProductContext();
   const {user} = UseAuthProvider()
 
   const deleteItemFromCart = async (itemId) => {
     try {
+      Notification("Item Removed","success")
       const result = cartProducts.filter((item) => item.id !== itemId);
       console.log('result', result);
       await updateDoc(doc(db, "users", `${user.email}`), {
         savedItems: result,
       });
     } catch (error) {
-      // todo error message
+      Notification(error.message,"Failed")
       console.log(error);
     }
   };
-
-  console.log("cartid", cartProducts);
 
   return (
     <div className="w-full">

@@ -5,12 +5,16 @@ import { Link } from "react-router-dom";
 import { UseAuthProvider } from "../context/AuthContext";
 import { arrayUnion, doc, updateDoc } from "firebase/firestore";
 import { db } from "../firebase";
+import { UseProductContext } from "../context/ProductContext";
 function Product({ title, name, price, image, id }) {
   const { user } = UseAuthProvider();
+  const {Notification} = UseProductContext()
 
-  const HandleAddToCart = () => {
+  // add item to the cart
+  const HandleAddToCart = async() => {
     if (user?.email) {
-      updateDoc(doc(db, "users", user.email), {
+      Notification("Item Added to Cart","success")
+     await updateDoc(doc(db, "users", user.email), {
         savedItems: arrayUnion({
           id,
           title: title || name,
@@ -19,7 +23,7 @@ function Product({ title, name, price, image, id }) {
         }),
       });
     } else {
-      alert("login to kar Bhai");
+      Notification("Login To add Item", "failed")
     }
   };
 

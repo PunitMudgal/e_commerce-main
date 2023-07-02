@@ -1,3 +1,4 @@
+import Alert from "./components/Alert";
 import Header from "./components/Header";
 import { AuthProvider } from "./context/AuthContext";
 import { FilterProductProvider } from "./context/FilterContext";
@@ -19,6 +20,7 @@ function App() {
         <FilterProductProvider>
         <Router>
           <Header />
+          <Alert />
           <Routes>
             <Route
               path="/"

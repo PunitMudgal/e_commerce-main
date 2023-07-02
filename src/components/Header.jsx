@@ -8,16 +8,17 @@ import { UseProductContext } from "../context/ProductContext";
 
 function Header() {
   const { user, logOut } = UseAuthProvider();
-  const {cartProducts, isLoading} = UseProductContext()
+  const { cartProducts, isLoading, Notification } = UseProductContext();
   const [toggleMenu, setToggleMenu] = useState(false);
   const Navigate = useNavigate();
 
   const handleLogOut = async () => {
     try {
       await logOut();
+      Notification("logout successful", "success");
     } catch (error) {
       console.log(error);
-      alert("error detected!");
+      Notification(error.message, "failed");
     }
   };
 
@@ -41,10 +42,12 @@ function Header() {
             <p className="absolute px-1 text-sm max-w-max top-0 right-[7.3rem] rounded-full bg-red-600">
               {cartProducts.length >= 1 ? cartProducts.length : 0}
             </p>
-          ): ''}
+          ) : (
+            ""
+          )}
           {user ? (
             <IoExitOutline
-              className="text-red-500"
+              className="text-red-500 cursor-pointer"
               size={25}
               onClick={handleLogOut}
             />

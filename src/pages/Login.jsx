@@ -3,20 +3,24 @@ import { Link, useNavigate } from "react-router-dom";
 import { UseAuthProvider } from "../context/AuthContext";
 import loginPic from "../assets/login.svg";
 import { FaGoogle } from "react-icons/fa";
+import { UseProductContext } from "../context/ProductContext";
 
 function Login() {
   const { LoginWithEmailPass, SignInWithGoogle } = UseAuthProvider();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const { Notification } = UseProductContext();
   const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       setError("");
       await LoginWithEmailPass(email, password);
-      navigate('/')
+      Notification("Login Success", "success");
+      navigate("/");
     } catch (error) {
+      Notification(error.message, "failed");
       setError(error.message);
       console.log("error", error);
     }
@@ -27,7 +31,11 @@ function Login() {
       <h2 className="text-center font-text2 uppercase text-4xl text-orange-500 font-bold">
         login
       </h2>
-      {error? <p>{error}</p> : null}
+      {error ? (
+        <p className="p-2 bg-rose-300 text-red-600 mb-1 rounded-md font-bold">
+          {error}
+        </p>
+      ) : null}
       <div className="flex justify-center items-center bg-gray-100 border border-gray-400 p-5 rounded-lg gap-10 md:gap-5">
         <div className="flex flex-col bounce-in-bottom">
           <form onSubmit={handleSubmit} className="flex-1 flex flex-col py-4">
@@ -60,7 +68,7 @@ function Login() {
             </p>
           </form>
           <button
-            className="flex items-center gap-2 bg-rose-300 p-2 rounded"
+            className="flex items-center justify-center gap-2 bg-rose-300 p-2 rounded"
             onClick={SignInWithGoogle}
           >
             {" "}

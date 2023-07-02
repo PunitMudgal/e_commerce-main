@@ -46,6 +46,27 @@ const ProductReducer = (state, action) => {
         cartProducts: action.payload,
       };
 
+      // case "SET_NOTIFICATION_ALERT":
+      //   // const {message, typ} = action.paylad
+      //   return{
+      //     ...state,
+      //     alert:{
+      //       // ...state.alert,
+      //       message:action.paylaod.message,
+      //       type:action.payload.typ
+      //     }
+      //   }
+
+      //   case "SET_NOTIFICATION_NULL":
+      //     return {
+      //       ...state,
+      //       alert: {
+      //       ...state.alert,
+      //         message: null,
+      //         type: null
+      //       }
+      //     }
+
     default:
       return state;
   }

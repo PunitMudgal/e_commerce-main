@@ -1,4 +1,10 @@
-import { createContext, useContext, useReducer, useEffect } from "react";
+import {
+  createContext,
+  useContext,
+  useReducer,
+  useEffect,
+  useState,
+} from "react";
 import axios from "axios";
 import reducer from "../reducer/ProductReducer";
 import { doc, onSnapshot } from "firebase/firestore";
@@ -19,6 +25,7 @@ const initialState = {
 };
 
 const ProductProvider = ({ children }) => {
+  const [alert, setAlert] = useState({ message:null, type:null });
   const [state, dispatch] = useReducer(reducer, initialState);
   const { user } = UseAuthProvider();
   const getAllData = async (key1, key2) => {
@@ -52,17 +59,29 @@ const ProductProvider = ({ children }) => {
   }, []);
 
   // get cart products from firestore database
+  
   useEffect(() => {
+    if(user !== null){
     onSnapshot(doc(db, "users", `${user.email}`), (doc) => {
       dispatch({ type: "GET_CART_PRODUCTS", payload: doc.data()?.savedItems });
     });
-  }, [user?.email]);
+  }
+  }, [user]);
 
+  // message (alert)
+  const Notification = (message, typ) => {
+    setAlert({message, type:typ})
+    setTimeout(() => {
+     setAlert({message:null, type:null})
+    }, 3000);
+  };
   return (
     <ProductContext.Provider
       value={{
         ...state,
         getSingleData,
+        Notification,
+        alert
       }}
     >
       {children}
