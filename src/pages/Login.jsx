@@ -33,14 +33,14 @@ function Login() {
           <form onSubmit={handleSubmit} className="flex-1 flex flex-col py-4">
             <input
               onChange={(e) => setEmail(e.target.value)}
-              className="p-3 my-2 bg-gray-300 rounded"
+              className="p-3 my-2 bg-slate-400/60 placeholder:text-gray-600 rounded"
               type="email"
               placeholder="Email"
               autoComplete="email"
             />
             <input
               onChange={(e) => setPassword(e.target.value)}
-              className="p-3 my-2 bg-gray-300 rounded"
+              className="p-3 my-2 bg-slate-400/60 placeholder:text-gray-600 rounded"
               type="password"
               placeholder="Password"
               autoComplete="current-password"

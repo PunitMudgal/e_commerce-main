@@ -31,7 +31,7 @@ function Home() {
         size={30}
       />
 
-      <div className="h-full w-full relative">
+      <div className="h-full w-full relative border-b-4 border-rose-600">
         <div
           id="slider"
           className="h-full w-full flex overflow-x-scroll whitespace-nowrap scroll-smooth"

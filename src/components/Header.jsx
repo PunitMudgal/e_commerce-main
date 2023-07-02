@@ -1,15 +1,16 @@
 import React, { useState } from "react";
 import { FaShoppingCart, FaEllipsisV } from "react-icons/fa";
 import { GrClose } from "react-icons/gr";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { UseAuthProvider } from "../context/AuthContext";
 import { IoExitOutline } from "react-icons/io5";
-import avatar from "../assets/user.jpg";
-
+import { UseProductContext } from "../context/ProductContext";
 
 function Header() {
-  const {user, logOut } = UseAuthProvider();
+  const { user, logOut } = UseAuthProvider();
+  const {cartProducts, isLoading} = UseProductContext()
   const [toggleMenu, setToggleMenu] = useState(false);
+  const Navigate = useNavigate();
 
   const handleLogOut = async () => {
     try {
@@ -31,18 +32,37 @@ function Header() {
           <a href="/contact">Contact Us</a>
         </div>
         <div className="flex items-center gap-4 relative p-1">
-         {/* {user && <span className="text-purple-400 "><small className="text-white">Welcome</small> {user.displayName}</span>} */}
-          {/* <img className="h-8 rounded-full object-contain" src={user?.email ? user?.photoURL : avatar} alt="not" />{" "} */}
-          <FaShoppingCart className=" cursor-pointer" size={25} />
-          {user && <p className="absolute px-1 text-sm max-w-max top-0 right-[7.3rem] rounded-full bg-red-600">0</p>}
+          <FaShoppingCart
+            onClick={() => Navigate("/cart")}
+            className=" cursor-pointer"
+            size={25}
+          />
+          {user && !isLoading ? (
+            <p className="absolute px-1 text-sm max-w-max top-0 right-[7.3rem] rounded-full bg-red-600">
+              {cartProducts.length >= 1 ? cartProducts.length : 0}
+            </p>
+          ): ''}
           {user ? (
-            <IoExitOutline className="text-red-500" size={25} onClick={handleLogOut} />
+            <IoExitOutline
+              className="text-red-500"
+              size={25}
+              onClick={handleLogOut}
+            />
           ) : (
-            <Link to='/signup' className="bg-rose-600 px-2 rounded-md font-bold">Signup</Link>
+            <Link
+              to="/signup"
+              className="bg-rose-600 px-2 rounded-md font-bold"
+            >
+              Signup
+            </Link>
           )}
-      <Link to='/login' className="bg-sky-600 px-2 rounded-md font-bold">Login</Link>
+          <Link to="/login" className="bg-sky-600 px-2 rounded-md font-bold">
+            Login
+          </Link>
 
-          <p className="hidden absolute top-8 right-3 bg-rose-800 rounded px-1">Logout</p>
+          <p className="hidden absolute top-8 right-3 bg-rose-800 rounded px-1">
+            Logout
+          </p>
         </div>
       </div>
 
@@ -76,7 +96,7 @@ function Header() {
             {user ? (
               <IoExitOutline onClick={handleLogOut} />
             ) : (
-              <Link to='/login'>Login</Link>
+              <Link to="/login">Login</Link>
             )}
           </div>
         )}

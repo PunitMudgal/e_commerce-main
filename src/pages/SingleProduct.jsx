@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { UseProductContext } from "../context/ProductContext";
 import { HiOutlineArrowNarrowLeft } from "react-icons/hi";
 import Loading from "../components/Loading";
@@ -11,8 +11,6 @@ function SingleProduct() {
   const { getSingleData, singleProduct, isSingleError, isSingleLoading } =
     UseProductContext();
   const { id } = useParams();
-
-  const navigate = useNavigate()
 
   useEffect(() => {
     if (Number(id) <= 20 && Number(id) >= 1) {

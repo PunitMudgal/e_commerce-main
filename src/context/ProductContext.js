@@ -1,6 +1,9 @@
 import { createContext, useContext, useReducer, useEffect } from "react";
 import axios from "axios";
 import reducer from "../reducer/ProductReducer";
+import { doc, onSnapshot } from "firebase/firestore";
+import { db } from "../firebase";
+import { UseAuthProvider } from "./AuthContext";
 
 const ProductContext = createContext();
 const apiKey1 = "https://api.pujakaitem.com/api/products";
@@ -12,11 +15,12 @@ const initialState = {
   isSingleError: false,
   isSingleLoading: false,
   singleProduct: {},
+  cartProducts: [],
 };
 
 const ProductProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
-
+  const { user } = UseAuthProvider();
   const getAllData = async (key1, key2) => {
     dispatch({ type: "ALL_DATA_LOADING" });
     try {
@@ -46,6 +50,13 @@ const ProductProvider = ({ children }) => {
   useEffect(() => {
     getAllData(apiKey1, apiKey2);
   }, []);
+
+  // get cart products from firestore database
+  useEffect(() => {
+    onSnapshot(doc(db, "users", `${user.email}`), (doc) => {
+      dispatch({ type: "GET_CART_PRODUCTS", payload: doc.data()?.savedItems });
+    });
+  }, [user?.email]);
 
   return (
     <ProductContext.Provider

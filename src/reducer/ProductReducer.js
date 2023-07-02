@@ -40,6 +40,12 @@ const ProductReducer = (state, action) => {
         isSingleLoading: false,
       };
 
+    case "GET_CART_PRODUCTS":
+      return {
+        ...state,
+        cartProducts: action.payload,
+      };
+
     default:
       return state;
   }

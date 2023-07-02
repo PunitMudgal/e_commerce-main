@@ -2,6 +2,7 @@ import Header from "./components/Header";
 import { AuthProvider } from "./context/AuthContext";
 import { FilterProductProvider } from "./context/FilterContext";
 import { ProductProvider } from "./context/ProductContext";
+import Cart from "./pages/Cart";
 import Contact from "./pages/Contact";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
@@ -31,6 +32,7 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
+            <Route path="/cart" element={<Cart />} />
           </Routes>
         </Router>
         </FilterProductProvider>
