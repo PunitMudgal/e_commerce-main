@@ -1,17 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { FaShoppingCart, FaEllipsisV } from "react-icons/fa";
 import { GrClose } from "react-icons/gr";
 import { Link, useNavigate } from "react-router-dom";
 import { UseAuthProvider } from "../context/AuthContext";
 import { IoExitOutline } from "react-icons/io5";
 import { UseProductContext } from "../context/ProductContext";
+import profilePhoto from "../assets/user.jpg";
+import { HiOutlinePlus } from "react-icons/hi";
 
 function Header() {
   const { user, logOut } = UseAuthProvider();
-  const { cartProducts, isLoading, Notification } = UseProductContext();
+  const {cartProducts, Notification } = UseProductContext();
   const [toggleMenu, setToggleMenu] = useState(false);
   const Navigate = useNavigate();
 
+  const tooltip = useRef(null);
   const handleLogOut = async () => {
     try {
       await logOut();
@@ -21,9 +24,12 @@ function Header() {
       Notification(error.message, "failed");
     }
   };
+  console.log("t", toggleMenu);
 
   return (
-    <div className="w-full p-8 md:p-5 md:text-md text-lg bg-blue-950 text-white font-text1 sticky top-0 z-20">
+    <div
+      className="w-full p-8 md:p-5 md:text-md text-lg bg-blue-950 text-white font-text1 sticky top-0 z-20"
+    >
       <div className="justify-evenly items-center flex md:hidden">
         <Link to="/" className="text-2xl">
           e<span className="text-orange-500">Shop</span>.
@@ -38,17 +44,27 @@ function Header() {
             className=" cursor-pointer"
             size={25}
           />
-          {user && (
-            <p className="absolute px-1 text-sm max-w-max top-0 right-[7.3rem] rounded-full bg-red-600">
-              {cartProducts.length >= 1 ? cartProducts.length : 0}
+           {user != null && (
+            <p className="absolute px-1 text-sm max-w-max top-0 right-[10.4rem] rounded-full bg-red-600">
+              {cartProducts.length}
             </p>
-          )}
+          )} 
           {user ? (
-            <IoExitOutline
-              className="text-red-500 cursor-pointer"
-              size={25}
-              onClick={handleLogOut}
-            />
+            <>
+              <IoExitOutline
+                className="text-red-500 cursor-pointer"
+                size={25}
+                onClick={handleLogOut}
+                onMouseOver={() => (tooltip.current.style.display = "flex")}
+                onMouseOut={() => (tooltip.current.style.display = "none")}
+              />
+              <p
+                ref={tooltip}
+                className="absolute hidden top-[2.2rem] right-[6rem] rounded-md bg-white text-gray-700 p-1 text-sm "
+              >
+                Logout
+              </p>
+            </>
           ) : (
             <Link
               to="/signup"
@@ -57,7 +73,41 @@ function Header() {
               Signup
             </Link>
           )}
-          <Link to="/login" className="bg-sky-600 px-2 rounded-md font-bold">
+          <img
+            src={profilePhoto}
+            alt="avatar"
+            onClick={() => setToggleMenu(true)}
+            className="h-9 rounded-full border"
+          />
+          {toggleMenu && (
+            <div
+              onMouseLeave={() => setToggleMenu(false)}
+              className="flex min-w-max flex-col justify-center absolute bg-purple-100 rounded-md top-[2.5rem] p-5 box-shadow border-2 border-rose-600"
+            >
+              <h4 className="text-center font-text1 text-rose-500 font-bold">
+                Personal Info
+              </h4>
+              <img
+                src={profilePhoto}
+                alt="avatar"
+                className="p-[2px] rounded-full h-52 w-52 self-center border-2 border-rose-400 box-shadow2"
+              />
+              <HiOutlinePlus
+                className="relative inline-block max-w-max bg-slate-600/60 rounded-full bottom-16 left-[11.5rem] text-gray-700 cursor-pointer box-shadow2"
+                size={40}
+              />
+
+              <p className="text-gray-600 self-center">
+                {" "}
+                <strong className="font-text2">Email Address:</strong>{" "}
+                {user.email}
+              </p>
+            </div>
+          )}
+          <Link
+            to="/login"
+            className="bg-cyan-400 hover:bg-cyan-500 px-2 rounded-md font-bold"
+          >
             Login
           </Link>
         </div>
@@ -69,7 +119,6 @@ function Header() {
           e<span className="text-orange-500">Shop</span>.
         </Link>
         <div className="flex gap-2">
-          {/*todo <img src="" alt="" /> */}
           <FaShoppingCart size={22} />
           <FaEllipsisV
             size={22}
