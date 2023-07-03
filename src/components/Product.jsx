@@ -2,30 +2,10 @@
 
 import React from "react";
 import { Link } from "react-router-dom";
-import { UseAuthProvider } from "../context/AuthContext";
-import { arrayUnion, doc, updateDoc } from "firebase/firestore";
-import { db } from "../firebase";
 import { UseProductContext } from "../context/ProductContext";
-function Product({ title, name, price, image, id }) {
-  const { user } = UseAuthProvider();
-  const {Notification} = UseProductContext()
 
-  // add item to the cart
-  const HandleAddToCart = async() => {
-    if (user?.email) {
-      Notification("Item Added to Cart","success")
-     await updateDoc(doc(db, "users", user.email), {
-        savedItems: arrayUnion({
-          id,
-          title: title || name,
-          image,
-          price
-        }),
-      });
-    } else {
-      Notification("Login To add Item", "failed")
-    }
-  };
+function Product({ title, name, price, image, id }) {
+  const { HandleAddToCart } = UseProductContext();
 
   return (
     <>
@@ -37,7 +17,7 @@ function Product({ title, name, price, image, id }) {
           <img
             className="object-cover rounded-md h-52 md:h-36"
             src={image}
-            alt={title||name}
+            alt={title || name}
           />
         </Link>
         <hr />
@@ -45,7 +25,7 @@ function Product({ title, name, price, image, id }) {
         <p className="font-bold uppercase font-text2">{title || name}</p>
         <button
           className="rounded-sm bg-[#16A085] text-center text-white"
-          onClick={HandleAddToCart}
+          onClick={() => HandleAddToCart(id, title, name, image, price)}
         >
           Add To Cart
         </button>

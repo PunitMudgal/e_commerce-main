@@ -5,7 +5,6 @@ import { UseProductContext } from "../context/ProductContext";
 import { doc, updateDoc } from "firebase/firestore";
 import { db } from "../firebase";
 import { UseAuthProvider } from "../context/AuthContext";
-import Alert from "../components/Alert";
 
 function Cart() {
   const { cartProducts, Notification} = UseProductContext();
@@ -37,7 +36,7 @@ function Cart() {
         >
           <HiOutlineArrowNarrowLeft /> Back To Products
         </Link>
-        <div className="flex flex-wrap gap-4 px-24 py-14 md:p-5">
+        <div className="flex flex-wrap gap-4 px-24 py-14 lg:px-14 lg:py-11 md:p-3 md:grid md:grid-cols-2">
           {" "}
           {cartProducts.length >= 1 ? (
             cartProducts.map((items) => (

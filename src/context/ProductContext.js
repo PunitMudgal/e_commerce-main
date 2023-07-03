@@ -7,7 +7,7 @@ import {
 } from "react";
 import axios from "axios";
 import reducer from "../reducer/ProductReducer";
-import { doc, onSnapshot } from "firebase/firestore";
+import { arrayUnion, doc, onSnapshot, updateDoc } from "firebase/firestore";
 import { db } from "../firebase";
 import { UseAuthProvider } from "./AuthContext";
 
@@ -25,7 +25,7 @@ const initialState = {
 };
 
 const ProductProvider = ({ children }) => {
-  const [alert, setAlert] = useState({ message:null, type:null });
+  const [alert, setAlert] = useState({ message: null, type: null });
   const [state, dispatch] = useReducer(reducer, initialState);
   const { user } = UseAuthProvider();
   const getAllData = async (key1, key2) => {
@@ -59,29 +59,51 @@ const ProductProvider = ({ children }) => {
   }, []);
 
   // get cart products from firestore database
-  
+
   useEffect(() => {
-    if(user !== null){
-    onSnapshot(doc(db, "users", `${user.email}`), (doc) => {
-      dispatch({ type: "GET_CART_PRODUCTS", payload: doc.data()?.savedItems });
-    });
-  }
+    if (user !== null) {
+      onSnapshot(doc(db, "users", `${user.email}`), (doc) => {
+        dispatch({
+          type: "GET_CART_PRODUCTS",
+          payload: doc.data()?.savedItems,
+        });
+      });
+    }
   }, [user]);
 
   // message (alert)
   const Notification = (message, typ) => {
-    setAlert({message, type:typ})
+    setAlert({ message, type: typ });
     setTimeout(() => {
-     setAlert({message:null, type:null})
+      setAlert({ message: null, type: null });
     }, 3000);
   };
+
+  // add item to the cart
+  const HandleAddToCart = async (id, title, name, image, price) => {
+    if (user?.email) {
+      Notification("Item Added to Cart", "success");
+      await updateDoc(doc(db, "users", user.email), {
+        savedItems: arrayUnion({
+          id,
+          title: title || name,
+          image,
+          price,
+        }),
+      });
+    } else {
+      Notification("Login To add Item", "failed");
+    }
+  };
+
   return (
     <ProductContext.Provider
       value={{
         ...state,
         getSingleData,
         Notification,
-        alert
+        alert,
+        HandleAddToCart,
       }}
     >
       {children}

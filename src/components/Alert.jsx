@@ -8,7 +8,7 @@ function Alert() {
   const { alert } = UseProductContext();
   return (
     <div
-      className="items-center justify-center right-2 fixed z-20 box-shadow gap-3 border m-1 border-green-500 bg-white p-3 md:p-2 "
+      className={`items-center justify-center right-2 fixed z-20 box-shadow gap-3 border m-1 ${alert.type === "success" ? "border-green-500" : "border-red-800"} bg-white p-3 md:p-2 `}
       style={{ display: alert.type === null ? "none" : "flex" }}
     >
       <div>

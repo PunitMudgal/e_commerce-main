@@ -23,14 +23,14 @@ function Header() {
   };
 
   return (
-    <div className="w-full p-8 md:p-5 md:text-md text-lg bg-blue-950 text-white font-text1 sticky top-0 z-10">
+    <div className="w-full p-8 md:p-5 md:text-md text-lg bg-blue-950 text-white font-text1 sticky top-0 z-20">
       <div className="justify-evenly items-center flex md:hidden">
         <Link to="/" className="text-2xl">
           e<span className="text-orange-500">Shop</span>.
         </Link>
         <div className="flex items-center gap-2">
-          <a href="/">Home</a>
-          <a href="/contact">Contact Us</a>
+          <Link to="/">Home</Link>
+          <Link to="/contact">Contact Us</Link>
         </div>
         <div className="flex items-center gap-4 relative p-1">
           <FaShoppingCart
@@ -38,12 +38,10 @@ function Header() {
             className=" cursor-pointer"
             size={25}
           />
-          {user && !isLoading ? (
+          {user && (
             <p className="absolute px-1 text-sm max-w-max top-0 right-[7.3rem] rounded-full bg-red-600">
               {cartProducts.length >= 1 ? cartProducts.length : 0}
             </p>
-          ) : (
-            ""
           )}
           {user ? (
             <IoExitOutline
@@ -62,18 +60,14 @@ function Header() {
           <Link to="/login" className="bg-sky-600 px-2 rounded-md font-bold">
             Login
           </Link>
-
-          <p className="hidden absolute top-8 right-3 bg-rose-800 rounded px-1">
-            Logout
-          </p>
         </div>
       </div>
 
       {/* mobile view  */}
       <div className="hidden md:flex justify-around items-center">
-        <p className="text-2xl ">
+        <Link to="/" className="text-2xl ">
           e<span className="text-orange-500">Shop</span>.
-        </p>
+        </Link>
         <div className="flex gap-2">
           {/*todo <img src="" alt="" /> */}
           <FaShoppingCart size={22} />
@@ -85,22 +79,23 @@ function Header() {
         </div>
         {/*  */}
         {toggleMenu && (
-          <div className="absolute flex flex-col top-0 left-0 h-[100%] w-full bg-slate-800 justify-center items-center font-text2 gap-6">
+          <div className="absolute flex flex-col top-0 left-0 h-screen w-full bg-slate-800 justify-center items-center font-text3 gap-6">
             <GrClose
-              className="absolute top-5 right-5 "
+              className="absolute top-5 right-5 text-white"
               size={22}
-              color="#fff"
+              color="#FDFEFE"
               onClick={() => setToggleMenu(false)}
             />
-            <a href="/">Home</a>
-            <a href="/contact">Contact Us</a>
+            <Link to="/">Home</Link>
+            <Link to="/contact">Contact Us</Link>
             <span>UserName</span>
-            <a href="/">My Cart</a>
+            <Link to="/cart">My Cart</Link>
             {user ? (
               <IoExitOutline onClick={handleLogOut} />
             ) : (
-              <Link to="/login">Login</Link>
+              <Link to="/signup">Signup</Link>
             )}
+            <Link to="/login">Login</Link>
           </div>
         )}
       </div>
