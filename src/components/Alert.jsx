@@ -1,6 +1,5 @@
 import React from "react";
 import { FiAlertTriangle } from "react-icons/fi";
-import { BiSolidError } from "react-icons/bi";
 import { GiCheckMark } from "react-icons/gi";
 import { UseProductContext } from "../context/ProductContext";
 
@@ -8,7 +7,7 @@ function Alert() {
   const { alert } = UseProductContext();
   return (
     <div
-      className={`items-center justify-center right-2 fixed z-20 box-shadow gap-3 border m-1 ${alert.type === "success" ? "border-green-500" : "border-red-800"} bg-white p-3 md:p-2 `}
+      className={`items-center justify-center right-2 fixed z-20 box-shadow gap-3 border m-1 ${alert.type === "success" ? "border-green-500" : "border-red-800"} bg-white p-3 md:p-2 slide-left`}
       style={{ display: alert.type === null ? "none" : "flex" }}
     >
       <div>

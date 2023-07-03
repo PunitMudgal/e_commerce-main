@@ -14,7 +14,6 @@ const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState({});
-
   const SignUpWithEmailPass = async(email, password) => {
     await createUserWithEmailAndPassword(auth, email, password);
     setDoc(doc(db, "users", email), {
@@ -26,12 +25,12 @@ const AuthProvider = ({ children }) => {
     return signInWithEmailAndPassword(auth, email, password);
   };
 
-  const SignInWithGoogle = () => {
+  const SignInWithGoogle = async() => {
     const Provider = new GoogleAuthProvider();
-    signInWithPopup(auth, Provider);
-    // setDoc(doc(db, "users", user?.displayName), {
-    //   savedItems: [],
-    // }); 
+    await signInWithPopup(auth, Provider);
+    setDoc(doc(db, "users", 'email'), {
+      savedItems: [],
+    });
   };
 
   const logOut = () => {

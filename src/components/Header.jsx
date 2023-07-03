@@ -10,7 +10,7 @@ import { HiOutlinePlus } from "react-icons/hi";
 
 function Header() {
   const { user, logOut } = UseAuthProvider();
-  const {cartProducts, Notification } = UseProductContext();
+  const { cartProducts, Notification, isLoading } = UseProductContext();
   const [toggleMenu, setToggleMenu] = useState(false);
   const Navigate = useNavigate();
 
@@ -24,12 +24,10 @@ function Header() {
       Notification(error.message, "failed");
     }
   };
-  console.log("t", toggleMenu);
+ 
 
   return (
-    <div
-      className="w-full p-8 md:p-5 md:text-md text-lg bg-blue-950 text-white font-text1 sticky top-0 z-20"
-    >
+    <div className="w-full p-8 md:p-5 md:text-md text-lg bg-blue-950 text-white font-text1 sticky top-0 z-20">
       <div className="justify-evenly items-center flex md:hidden">
         <Link to="/" className="text-2xl">
           e<span className="text-orange-500">Shop</span>.
@@ -44,11 +42,11 @@ function Header() {
             className=" cursor-pointer"
             size={25}
           />
-           {user != null && (
+          {user?.email? (
             <p className="absolute px-1 text-sm max-w-max top-0 right-[10.4rem] rounded-full bg-red-600">
               {cartProducts.length}
             </p>
-          )} 
+          ): 0}
           {user ? (
             <>
               <IoExitOutline
@@ -79,6 +77,7 @@ function Header() {
             onClick={() => setToggleMenu(true)}
             className="h-9 rounded-full border"
           />
+          {/* user info card  */}
           {toggleMenu && (
             <div
               onMouseLeave={() => setToggleMenu(false)}
@@ -88,7 +87,7 @@ function Header() {
                 Personal Info
               </h4>
               <img
-                src={profilePhoto}
+                src={user?.photoURL || profilePhoto}
                 alt="avatar"
                 className="p-[2px] rounded-full h-52 w-52 self-center border-2 border-rose-400 box-shadow2"
               />
@@ -96,7 +95,13 @@ function Header() {
                 className="relative inline-block max-w-max bg-slate-600/60 rounded-full bottom-16 left-[11.5rem] text-gray-700 cursor-pointer box-shadow2"
                 size={40}
               />
-
+              {user.displayName && (
+                <p className="text-gray-600 self-center">
+                  {" "}
+                  <strong className="font-text2">Email Address:</strong>{" "}
+                  {user?.displayName}
+                </p>
+              )}
               <p className="text-gray-600 self-center">
                 {" "}
                 <strong className="font-text2">Email Address:</strong>{" "}
