@@ -42,11 +42,11 @@ function Header() {
             className=" cursor-pointer"
             size={25}
           />
-          {user?.email? (
+          {/* {user?.email? (
             <p className="absolute px-1 text-sm max-w-max top-0 right-[10.4rem] rounded-full bg-red-600">
               {cartProducts.length}
             </p>
-          ): 0}
+          ): 0} */}
           {user ? (
             <>
               <IoExitOutline

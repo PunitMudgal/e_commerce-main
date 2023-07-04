@@ -1,44 +1,51 @@
+import { Suspense, lazy } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Alert from "./components/Alert";
-import Header from "./components/Header";
 import { AuthProvider } from "./context/AuthContext";
 import { FilterProductProvider } from "./context/FilterContext";
 import { ProductProvider } from "./context/ProductContext";
-import Cart from "./pages/Cart";
-import Contact from "./pages/Contact";
-import Home from "./pages/Home";
-import Login from "./pages/Login";
-import Main from "./pages/Main";
-import Signup from "./pages/Signup";
-import SingleProduct from "./pages/SingleProduct";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Header from "./components/Header";
+
+const Cart = lazy(() => import("./pages/Cart"));
+const Home = lazy(() => import("./pages/Home"));
+const Contact = lazy(() => import("./pages/Contact"));
+const Main = lazy(() => import("./pages/Main"));
+const Login = lazy(() => import("./pages/Login"));
+const Signup = lazy(() => import("./pages/Signup"));
+const SingleProduct = lazy(() => import("./pages/SingleProduct"));
 
 function App() {
   return (
     <>
-    <AuthProvider>
-      <ProductProvider>
-        <FilterProductProvider>
-        <Router>
-          <Header />
-          <Alert />
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <>
-                  <Home /> <Main />
-                </>
-              }
-            />
-            <Route path="/singleProduct/:id" element={<SingleProduct />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Signup />} />
-            <Route path="/cart" element={<Cart />} />
-          </Routes>
-        </Router>
-        </FilterProductProvider>
-      </ProductProvider>
+      <AuthProvider>
+        <ProductProvider>
+          <FilterProductProvider>
+            <Router>
+              <Header />
+              <Alert />
+              <Suspense fallback={<div>Loading...</div>}>
+                <Routes>
+                  <Route
+                    path="/"
+                    element={
+                      <>
+                        <Home /> <Main />
+                      </>
+                    }
+                  />
+                  <Route
+                    path="/singleProduct/:id"
+                    element={<SingleProduct />}
+                  />
+                  <Route path="/contact" element={<Contact />} />
+                  <Route path="/login" element={<Login />} />
+                  <Route path="/signup" element={<Signup />} />
+                  <Route path="/cart" element={<Cart />} />
+                </Routes>
+              </Suspense>
+            </Router>
+          </FilterProductProvider>
+        </ProductProvider>
       </AuthProvider>
     </>
   );

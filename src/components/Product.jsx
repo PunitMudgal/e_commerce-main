@@ -3,6 +3,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { UseProductContext } from "../context/ProductContext";
+import LazyLoad from "react-lazy-load";
 
 function Product({ title, name, price, image, id }) {
   const { HandleAddToCart } = UseProductContext();
@@ -14,11 +15,13 @@ function Product({ title, name, price, image, id }) {
           to={`/singleProduct/${id}`}
           className="h-full w-full bg-white flex justify-center items-center"
         >
+          <LazyLoad height={140}>
           <img
             className="object-cover rounded-md h-52 md:h-36"
             src={image}
             alt={title || name}
           />
+          </LazyLoad>
         </Link>
         <hr />
         <p className="text-orange-600">${price > 1200 ? price / 100 : price}</p>
