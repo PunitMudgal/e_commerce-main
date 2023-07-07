@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useCartContext } from "../context/CartContext";
 
 function ListView({ title, name, price, image, description, id }) {
   const CutTheLength = (str, num) => {
@@ -9,7 +10,7 @@ function ListView({ title, name, price, image, description, id }) {
       return str;
     }
   };
-
+  const { HandleAddToCart } = useCartContext();
   return (
     <Link
       to={`/singleProduct/${id}`}
@@ -30,7 +31,10 @@ function ListView({ title, name, price, image, description, id }) {
         <p className=" flex max-w-md flex-wrap">
           {CutTheLength(description, 260)}
         </p>
-        <button className="bg-[#16A085] text-white font-bold  px-1 rounded-md py-2 ">
+        <button
+          className="bg-[#16A085] text-white font-bold  px-1 rounded-md py-2 "
+          onClick={() => HandleAddToCart(id, title, name, image, price)}
+        >
           Add To Cart
         </button>
       </div>

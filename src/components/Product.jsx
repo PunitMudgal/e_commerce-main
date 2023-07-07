@@ -2,11 +2,11 @@
 
 import React from "react";
 import { Link } from "react-router-dom";
-import { UseProductContext } from "../context/ProductContext";
 import LazyLoad from "react-lazy-load";
+import { useCartContext } from "../context/CartContext";
 
 function Product({ title, name, price, image, id }) {
-  const { HandleAddToCart } = UseProductContext();
+  const { HandleAddToCart } = useCartContext()
 
   return (
     <>

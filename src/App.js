@@ -5,6 +5,7 @@ import { AuthProvider } from "./context/AuthContext";
 import { FilterProductProvider } from "./context/FilterContext";
 import { ProductProvider } from "./context/ProductContext";
 import Header from "./components/Header";
+import { CartProvider } from "./context/CartContext";
 
 const Cart = lazy(() => import("./pages/Cart"));
 const Home = lazy(() => import("./pages/Home"));
@@ -20,6 +21,7 @@ function App() {
       <AuthProvider>
         <ProductProvider>
           <FilterProductProvider>
+            <CartProvider>
             <Router>
               <Header />
               <Alert />
@@ -44,6 +46,7 @@ function App() {
                 </Routes>
               </Suspense>
             </Router>
+            </CartProvider>
           </FilterProductProvider>
         </ProductProvider>
       </AuthProvider>

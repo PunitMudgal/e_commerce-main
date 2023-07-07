@@ -67,21 +67,7 @@ const ProductProvider = ({ children }) => {
     getAllData(apiKey1, apiKey2);
   }, []);
 
-  // get cart products from firestore database
-  useEffect(() => {
-    if (user !== null) {
-      const unsubscribe = onSnapshot(
-        doc(db, "users", `${user.email}`),
-        (doc) => {
-          dispatch({
-            type: "GET_CART_PRODUCTS",
-            payload: doc.data()?.savedItems,
-          });
-        }
-      );
-      return () => unsubscribe();
-    }
-  }, [user]);
+  // useEffect 
 
   // message (alert)
   const Notification = (message, typ) => {
@@ -92,32 +78,30 @@ const ProductProvider = ({ children }) => {
   };
 
   // add item to the cart
-  const HandleAddToCart = async (id, title, name, image, price) => {
-    if (user?.email) {
-      Notification("Item Added to Cart", "success");
-      await updateDoc(doc(db, "users", user.email), {
-        savedItems: arrayUnion({
-          id,
-          title: title || name,
-          image,
-          price,
-          quantity: 1,
-        }),
-      });
-    } else {
-      Notification("Login To add Item", "failed");
-    }
-  };
+  // const HandleAddToCart = async (id, title, name, image, price) => {
+  //   if (user?.email) {
+  //     Notification("Item Added to Cart", "success");
+  //     await updateDoc(doc(db, "users", user.email), {
+  //       savedItems: arrayUnion({
+  //         id,
+  //         title: title || name,
+  //         image,
+  //         price,
+  //         quantity: 1,
+  //       }),
+  //     });
+  //   } else {
+  //     Notification("Login To add Item", "failed");
+  //   }
+  // };
 
-  const increaseQuantity = async (itemId) => {
-    console.log("id", itemId);
-    dispatch({ type: "INCREASE_ITEM_QUANTITY", payload: itemId });
-  };
+  // const increaseQuantity = async (itemId) => {
+  //   dispatch({ type: "INCREASE_ITEM_QUANTITY", payload: itemId });
+  // };
 
-  const decreaseQuantity = (itemId) => {
-    console.log("decrease", itemId);
-    dispatch({ type: "DECREASE_ITEM_QUANTITY", payload: itemId });
-  };
+  // const decreaseQuantity = (itemId) => {
+  //   dispatch({ type: "DECREASE_ITEM_QUANTITY", payload: itemId });
+  // };
 
   return (
     <ProductContext.Provider
@@ -126,9 +110,9 @@ const ProductProvider = ({ children }) => {
         getSingleData,
         Notification,
         alert,
-        HandleAddToCart,
-        increaseQuantity,
-        decreaseQuantity,
+        // HandleAddToCart,
+        // increaseQuantity,
+        // decreaseQuantity,
       }}
     >
       {children}
