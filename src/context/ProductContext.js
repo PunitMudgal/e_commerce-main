@@ -7,7 +7,15 @@ import {
 } from "react";
 import axios from "axios";
 import reducer from "../reducer/ProductReducer";
-import { arrayUnion, doc, onSnapshot, updateDoc } from "firebase/firestore";
+import {
+  QuerySnapshot,
+  arrayUnion,
+  collection,
+  doc,
+  onSnapshot,
+  query,
+  updateDoc,
+} from "firebase/firestore";
 import { db } from "../firebase";
 import { UseAuthProvider } from "./AuthContext";
 
@@ -28,6 +36,7 @@ const ProductProvider = ({ children }) => {
   const [alert, setAlert] = useState({ message: null, type: null });
   const [state, dispatch] = useReducer(reducer, initialState);
   const { user } = UseAuthProvider();
+
   const getAllData = async (key1, key2) => {
     dispatch({ type: "ALL_DATA_LOADING" });
     try {
@@ -59,15 +68,18 @@ const ProductProvider = ({ children }) => {
   }, []);
 
   // get cart products from firestore database
-
   useEffect(() => {
     if (user !== null) {
-      onSnapshot(doc(db, "users", `${user.email}`), (doc) => {
-        dispatch({
-          type: "GET_CART_PRODUCTS",
-          payload: doc.data()?.savedItems,
-        });
-      });
+      const unsubscribe = onSnapshot(
+        doc(db, "users", `${user.email}`),
+        (doc) => {
+          dispatch({
+            type: "GET_CART_PRODUCTS",
+            payload: doc.data()?.savedItems,
+          });
+        }
+      );
+      return () => unsubscribe();
     }
   }, [user]);
 
@@ -89,11 +101,22 @@ const ProductProvider = ({ children }) => {
           title: title || name,
           image,
           price,
+          quantity: 1,
         }),
       });
     } else {
       Notification("Login To add Item", "failed");
     }
+  };
+
+  const increaseQuantity = async (itemId) => {
+    console.log("id", itemId);
+    dispatch({ type: "INCREASE_ITEM_QUANTITY", payload: itemId });
+  };
+
+  const decreaseQuantity = (itemId) => {
+    console.log("decrease", itemId);
+    dispatch({ type: "DECREASE_ITEM_QUANTITY", payload: itemId });
   };
 
   return (
@@ -104,6 +127,8 @@ const ProductProvider = ({ children }) => {
         Notification,
         alert,
         HandleAddToCart,
+        increaseQuantity,
+        decreaseQuantity,
       }}
     >
       {children}

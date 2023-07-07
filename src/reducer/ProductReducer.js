@@ -46,26 +46,39 @@ const ProductReducer = (state, action) => {
         cartProducts: action.payload,
       };
 
-      // case "SET_NOTIFICATION_ALERT":
-      //   // const {message, typ} = action.paylad
-      //   return{
-      //     ...state,
-      //     alert:{
-      //       // ...state.alert,
-      //       message:action.paylaod.message,
-      //       type:action.payload.typ
-      //     }
-      //   }
+    case "INCREASE_ITEM_QUANTITY":
+      const updatedProduct = state.cartProducts.map((item) => {
+        if (item.id === action.payload) {
+          let newQuantity = item.quantity + 1;
+          return {
+            ...item,
+            quantity: newQuantity,
+          };
+        } else {
+          return item;
+        }
+      });
+      return {
+        ...state,
+        cartProducts: updatedProduct,
+      };
 
-      //   case "SET_NOTIFICATION_NULL":
-      //     return {
-      //       ...state,
-      //       alert: {
-      //       ...state.alert,
-      //         message: null,
-      //         type: null
-      //       }
-      //     }
+    case "DECREASE_ITEM_QUANTITY":
+      const updatedProduct2 = state.cartProducts.map((item) => {
+        if (item.id === action.payload) {
+          let newQuantity = item.quantity - 1;       
+          return {
+            ...item,
+            quantity: newQuantity,
+          };
+        } else {
+          return item;
+        }
+      });
+      return {
+        ...state,
+        cartProducts: updatedProduct2,
+      };
 
     default:
       return state;
