@@ -14,7 +14,7 @@ const initialState = {
 const CartProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const { user } = UseAuthProvider();
-  const { Notification } = UseProductContext()
+  const { Notification } = UseProductContext();
 
   // get cart products from firestore database
   useEffect(() => {

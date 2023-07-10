@@ -72,12 +72,12 @@ function SingleProduct() {
                 </div>
                 <p>
                   <b>Rating:</b>{" "}
-                  {singleProduct.stars ? singleProduct.stars : singleProduct.rating.rate}
+                  {singleProduct.stars !== undefined ? singleProduct.stars : singleProduct.rating.rate}
                   /5
                 </p>
                 <p>
                   <b>Review By:</b>{" "}
-                  {singleProduct.reviews ? singleProduct.reviews : singleProduct.rating.count}
+                  {singleProduct.reviews !== undefined ? singleProduct.reviews : singleProduct.rating.count}
                 </p>
                 <p className="font-text1 text-slate-600 text-lg md:text-md text-justify">
                   {singleProduct.description}

@@ -7,13 +7,14 @@ import { IoExitOutline } from "react-icons/io5";
 import { UseProductContext } from "../context/ProductContext";
 import profilePhoto from "../assets/user.jpg";
 import { HiOutlinePlus } from "react-icons/hi";
+import { useCartContext } from "../context/CartContext";
 
 function Header() {
   const { user, logOut } = UseAuthProvider();
-  const { cartProducts, Notification, isLoading } = UseProductContext();
+  const { Notification } = UseProductContext();
   const [toggleMenu, setToggleMenu] = useState(false);
   const Navigate = useNavigate();
-
+  const { cartProducts } = useCartContext();
   const tooltip = useRef(null);
   const handleLogOut = async () => {
     try {
@@ -24,7 +25,6 @@ function Header() {
       Notification(error.message, "failed");
     }
   };
- 
 
   return (
     <div className="w-full p-8 md:p-5 md:text-md text-lg bg-blue-950 text-white font-text1 sticky top-0 z-20">
@@ -42,11 +42,9 @@ function Header() {
             className=" cursor-pointer"
             size={25}
           />
-          {/* {user?.email? (
-            <p className="absolute px-1 text-sm max-w-max top-0 right-[10.4rem] rounded-full bg-red-600">
-              {cartProducts.length}
-            </p>
-          ): 0} */}
+          <p className="absolute px-1 text-sm max-w-max top-0 right-[10.4rem] rounded-full bg-red-600">
+            {user?.email !== undefined && cartProducts.length}
+          </p>
           {user ? (
             <>
               <IoExitOutline
