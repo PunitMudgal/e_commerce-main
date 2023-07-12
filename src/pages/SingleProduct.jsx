@@ -23,7 +23,7 @@ function SingleProduct() {
     } else {
       getSingleData(`${api2}?id=${id}`);
     }
-  }, [getSingleData, id]);
+  }, []);
 
   let newImage = singleProduct.name? singleProduct.image[0].url : singleProduct.image
 
@@ -72,12 +72,12 @@ function SingleProduct() {
                 </div>
                 <p>
                   <b>Rating:</b>{" "}
-                  {singleProduct.stars !== undefined ? singleProduct.stars : singleProduct.rating.rate}
+                  {singleProduct?.stars !== null ? singleProduct.stars : singleProduct.rating.rate}
                   /5
                 </p>
                 <p>
                   <b>Review By:</b>{" "}
-                  {singleProduct.reviews !== undefined ? singleProduct.reviews : singleProduct.rating.count}
+                  {singleProduct?.reviews !== null ? singleProduct.reviews : singleProduct.rating.count}
                 </p>
                 <p className="font-text1 text-slate-600 text-lg md:text-md text-justify">
                   {singleProduct.description}
