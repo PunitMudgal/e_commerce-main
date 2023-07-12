@@ -32,7 +32,7 @@ function SingleProduct() {
       <h1 className="uppercase px-8 py-3 font-text3 font-bold text-gray-800 text-2xl md:text-xl">
         Product Details
       </h1>
-      <Link to="/" className="flex  items-center font-text1 font-semibold px-8">
+      <Link to="/e_commerce-main" className="flex  items-center font-text1 font-semibold px-8">
         <HiOutlineArrowNarrowLeft /> Back To Products
       </Link>
 

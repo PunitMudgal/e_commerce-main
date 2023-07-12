@@ -40,7 +40,7 @@ function Cart() {
         CART ITEMS
       </h1>
       <Link
-        to="/"
+        to="/e_commerce-main"
         className="flex items-center font-text1 font-semibold px-8 md:px-3 "
       >
         <HiOutlineArrowNarrowLeft /> Back To Products

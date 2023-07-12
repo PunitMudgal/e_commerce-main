@@ -7,17 +7,6 @@ import {
 } from "react";
 import axios from "axios";
 import reducer from "../reducer/ProductReducer";
-import {
-  QuerySnapshot,
-  arrayUnion,
-  collection,
-  doc,
-  onSnapshot,
-  query,
-  updateDoc,
-} from "firebase/firestore";
-import { db } from "../firebase";
-import { UseAuthProvider } from "./AuthContext";
 
 const ProductContext = createContext();
 const apiKey1 = "https://api.pujakaitem.com/api/products";
@@ -35,7 +24,6 @@ const initialState = {
 const ProductProvider = ({ children }) => {
   const [alert, setAlert] = useState({ message: null, type: null });
   const [state, dispatch] = useReducer(reducer, initialState);
-  const { user } = UseAuthProvider();
 
   const getAllData = async (key1, key2) => {
     dispatch({ type: "ALL_DATA_LOADING" });
@@ -67,8 +55,6 @@ const ProductProvider = ({ children }) => {
     getAllData(apiKey1, apiKey2);
   }, []);
 
-  // useEffect 
-
   // message (alert)
   const Notification = (message, typ) => {
     setAlert({ message, type: typ });
@@ -77,32 +63,6 @@ const ProductProvider = ({ children }) => {
     }, 3000);
   };
 
-  // add item to the cart
-  // const HandleAddToCart = async (id, title, name, image, price) => {
-  //   if (user?.email) {
-  //     Notification("Item Added to Cart", "success");
-  //     await updateDoc(doc(db, "users", user.email), {
-  //       savedItems: arrayUnion({
-  //         id,
-  //         title: title || name,
-  //         image,
-  //         price,
-  //         quantity: 1,
-  //       }),
-  //     });
-  //   } else {
-  //     Notification("Login To add Item", "failed");
-  //   }
-  // };
-
-  // const increaseQuantity = async (itemId) => {
-  //   dispatch({ type: "INCREASE_ITEM_QUANTITY", payload: itemId });
-  // };
-
-  // const decreaseQuantity = (itemId) => {
-  //   dispatch({ type: "DECREASE_ITEM_QUANTITY", payload: itemId });
-  // };
-
   return (
     <ProductContext.Provider
       value={{
@@ -110,9 +70,6 @@ const ProductProvider = ({ children }) => {
         getSingleData,
         Notification,
         alert,
-        // HandleAddToCart,
-        // increaseQuantity,
-        // decreaseQuantity,
       }}
     >
       {children}

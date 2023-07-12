@@ -2,6 +2,11 @@ import React from "react";
 import bgImage from "../assets/fashion-blue-bg.jpg";
 import bgImage2 from "../assets/fashion-purple-bg.jpg";
 import bgImage3 from "../assets/fashion-white-bg2.jpg";
+import whiteCompressed from "../assets/whiteCompressed.jpg";
+import purpleCompressed from "../assets/purpleCompressed.jpg";
+import blueCompressed from "../assets/blueCompressed.jpg";
+
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 import { FaAngleRight, FaAngleLeft } from "react-icons/fa";
 
@@ -34,21 +39,27 @@ function Home() {
       <div className="h-full w-full relative border-b-4 border-rose-600">
         <div
           id="slider"
-          className="h-full w-full flex overflow-x-scroll whitespace-nowrap scroll-smooth"
+          className="h-full w-full flex overflow-x-scroll whitespace-nowrap scroll-smooth overflow-hidden"
         >
-          <img
+          <LazyLoadImage
             className="object-cover h-full min-w-[100vw]"
             src={bgImage2}
+            placeholderSrc={purpleCompressed}
             alt="bgImg2"
+            // effect="blur"
           />
-          <img
+          <LazyLoadImage
             className="object-cover  border-x-8 border-slate-700 h-full min-w-[100vw]"
             src={bgImage}
+            placeholderSrc={blueCompressed}
             alt="bgImg"
+            // effect="blur"
           />
-          <img
+          <LazyLoadImage
             className="object-cover h-full min-w-[100vw]"
             src={bgImage3}
+            placeholderSrc={whiteCompressed}
+            // effect="blur"
             alt="bgImg3"
           />
         </div>
@@ -56,9 +67,14 @@ function Home() {
           <h3 className="font-text1 text-5xl md:text-2xl">
             Men & Women's Fashion
           </h3>
-          <p className="text-2xl md:text-md">Up to 30% off on all onsale Products</p>
+          <p className="text-2xl md:text-md">
+            Up to 30% off on all onsale Products
+          </p>
           <hr />
-          <a className="bg-orange-500 rounded-md p-3 self-center" href="#products">
+          <a
+            className="bg-orange-500 rounded-md p-3 self-center"
+            href="#products"
+          >
             Shop Now
           </a>
         </div>

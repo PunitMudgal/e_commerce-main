@@ -22,13 +22,13 @@ function App() {
         <ProductProvider>
           <FilterProductProvider>
             <CartProvider>
-            <Router>
+            <Router basename="/e_commerce-main">
               <Header />
               <Alert />
               <Suspense fallback={<div>Loading...</div>}>
                 <Routes>
                   <Route
-                    path="/"
+                   exact path="/e_commerce-main"
                     element={
                       <>
                         <Home /> <Main />
