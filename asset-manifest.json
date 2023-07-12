@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/PunitMudgal/e_commerce-main/static/css/main.185f9c31.css",
-    "main.js": "/PunitMudgal/e_commerce-main/static/js/main.348d0998.js",
-    "static/js/137.173a9360.chunk.js": "/PunitMudgal/e_commerce-main/static/js/137.173a9360.chunk.js",
+    "main.js": "/PunitMudgal/e_commerce-main/static/js/main.9467a09e.js",
+    "static/js/137.647c6c3a.chunk.js": "/PunitMudgal/e_commerce-main/static/js/137.647c6c3a.chunk.js",
     "static/js/854.8ab3e4a4.chunk.js": "/PunitMudgal/e_commerce-main/static/js/854.8ab3e4a4.chunk.js",
     "static/js/951.553d1ce5.chunk.js": "/PunitMudgal/e_commerce-main/static/js/951.553d1ce5.chunk.js",
-    "static/js/210.0d0d3919.chunk.js": "/PunitMudgal/e_commerce-main/static/js/210.0d0d3919.chunk.js",
+    "static/js/210.34305b66.chunk.js": "/PunitMudgal/e_commerce-main/static/js/210.34305b66.chunk.js",
     "static/js/915.e9925031.chunk.js": "/PunitMudgal/e_commerce-main/static/js/915.e9925031.chunk.js",
     "static/js/457.354c007c.chunk.js": "/PunitMudgal/e_commerce-main/static/js/457.354c007c.chunk.js",
-    "static/js/738.8b101895.chunk.js": "/PunitMudgal/e_commerce-main/static/js/738.8b101895.chunk.js",
+    "static/js/738.59280882.chunk.js": "/PunitMudgal/e_commerce-main/static/js/738.59280882.chunk.js",
     "static/js/787.8f3c9bde.chunk.js": "/PunitMudgal/e_commerce-main/static/js/787.8f3c9bde.chunk.js",
     "static/js/118.c1635c62.chunk.js": "/PunitMudgal/e_commerce-main/static/js/118.c1635c62.chunk.js",
     "static/js/87.a90ff42a.chunk.js": "/PunitMudgal/e_commerce-main/static/js/87.a90ff42a.chunk.js",
@@ -21,20 +21,20 @@
     "static/media/login.svg": "/PunitMudgal/e_commerce-main/static/media/login.fe48c617f6e6bee737a1cc15c99b67cf.svg",
     "index.html": "/PunitMudgal/e_commerce-main/index.html",
     "main.185f9c31.css.map": "/PunitMudgal/e_commerce-main/static/css/main.185f9c31.css.map",
-    "main.348d0998.js.map": "/PunitMudgal/e_commerce-main/static/js/main.348d0998.js.map",
-    "137.173a9360.chunk.js.map": "/PunitMudgal/e_commerce-main/static/js/137.173a9360.chunk.js.map",
+    "main.9467a09e.js.map": "/PunitMudgal/e_commerce-main/static/js/main.9467a09e.js.map",
+    "137.647c6c3a.chunk.js.map": "/PunitMudgal/e_commerce-main/static/js/137.647c6c3a.chunk.js.map",
     "854.8ab3e4a4.chunk.js.map": "/PunitMudgal/e_commerce-main/static/js/854.8ab3e4a4.chunk.js.map",
     "951.553d1ce5.chunk.js.map": "/PunitMudgal/e_commerce-main/static/js/951.553d1ce5.chunk.js.map",
-    "210.0d0d3919.chunk.js.map": "/PunitMudgal/e_commerce-main/static/js/210.0d0d3919.chunk.js.map",
+    "210.34305b66.chunk.js.map": "/PunitMudgal/e_commerce-main/static/js/210.34305b66.chunk.js.map",
     "915.e9925031.chunk.js.map": "/PunitMudgal/e_commerce-main/static/js/915.e9925031.chunk.js.map",
     "457.354c007c.chunk.js.map": "/PunitMudgal/e_commerce-main/static/js/457.354c007c.chunk.js.map",
-    "738.8b101895.chunk.js.map": "/PunitMudgal/e_commerce-main/static/js/738.8b101895.chunk.js.map",
+    "738.59280882.chunk.js.map": "/PunitMudgal/e_commerce-main/static/js/738.59280882.chunk.js.map",
     "787.8f3c9bde.chunk.js.map": "/PunitMudgal/e_commerce-main/static/js/787.8f3c9bde.chunk.js.map",
     "118.c1635c62.chunk.js.map": "/PunitMudgal/e_commerce-main/static/js/118.c1635c62.chunk.js.map",
     "87.a90ff42a.chunk.js.map": "/PunitMudgal/e_commerce-main/static/js/87.a90ff42a.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.185f9c31.css",
-    "static/js/main.348d0998.js"
+    "static/js/main.9467a09e.js"
   ]
 }
