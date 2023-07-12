@@ -29,11 +29,11 @@ function Header() {
   return (
     <div className="w-full p-8 md:p-5 md:text-md text-lg bg-blue-950 text-white font-text1 sticky top-0 z-20">
       <div className="justify-evenly items-center flex md:hidden">
-        <Link to="/e_commerce-main" className="text-2xl">
+        <Link to="/" className="text-2xl">
           e<span className="text-orange-500">Shop</span>.
         </Link>
         <div className="flex items-center gap-2">
-          <Link to="/e_commerce-main">Home</Link>
+          <Link to="/">Home</Link>
           <Link to="/contact">Contact Us</Link>
         </div>
         <div className="flex items-center gap-4 relative p-1">
@@ -118,7 +118,7 @@ function Header() {
 
       {/* mobile view  */}
       <div className="hidden md:flex justify-around items-center">
-        <Link to="/e_commerce-main" className="text-2xl ">
+        <Link to="/" className="text-2xl ">
           e<span className="text-orange-500">Shop</span>.
         </Link>
         <div className="flex gap-2">
@@ -138,7 +138,7 @@ function Header() {
               color="#FDFEFE"
               onClick={() => setToggleMenu(false)}
             />
-            <Link to="/e_commerce-main">Home</Link>
+            <Link to="/">Home</Link>
             <Link to="/contact">Contact Us</Link>
             <span>UserName</span>
             <Link to="/cart">My Cart</Link>

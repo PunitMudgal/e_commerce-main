@@ -27,14 +27,14 @@ function App() {
         <ProductProvider>
           <FilterProductProvider>
             <CartProvider>
-              <HashRouter basename="/e_commerce-main">
+              <HashRouter basename="/">
                 <Header />
                 <Alert />
                 <Suspense fallback={<div>Loading...</div>}>
                   <Routes>
                     <Route
                       exact
-                      path="/e_commerce-main"
+                      path="/"
                       element={
                         <>
                           <Home /> <Main />
