@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkecommerce_2=self.webpackChunkecommerce_2||[]).push([[951],{1951:function(e,c,n){n.r(c);n(2791);var r=n(184);c.default=function(){return(0,r.jsx)("div",{children:"Contact"})}}}]);
-//# sourceMappingURL=951.4bbb6b20.chunk.js.map
