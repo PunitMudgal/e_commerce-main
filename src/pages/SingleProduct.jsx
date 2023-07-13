@@ -4,6 +4,7 @@ import { UseProductContext } from "../context/ProductContext";
 import { HiOutlineArrowNarrowLeft } from "react-icons/hi";
 import Loading from "../components/Loading";
 import Error from "../components/Error";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 
 function SingleProduct() {
   const api1 = "https://fakestoreapi.com/products";
@@ -25,7 +26,9 @@ function SingleProduct() {
     }
   }, []);
 
-  let newImage = singleProduct.name? singleProduct.image[0].url : singleProduct.image
+  let newImage = singleProduct.name
+    ? singleProduct.image[0].url
+    : singleProduct.image;
 
   return (
     <div className="bg-gray-100 min-h-screen">
@@ -37,7 +40,21 @@ function SingleProduct() {
       </Link>
 
       {isSingleLoading ? (
-        <Loading />
+        <>
+          <SkeletonTheme baseColor="#D5D8DC" highlightColor="#444">
+            <div className="flex justify-center gap-2">
+              <Skeleton height={400} width={400} enableAnimation={true} />
+              <div className="flex flex-col justify-evenly">
+                <Skeleton height={30} width={200} />
+                <Skeleton height={30} width={200} />
+                <Skeleton height={30} width={150} />
+                <Skeleton height={20} width={60} />
+                <Skeleton height={200} width={500} enableAnimation />
+                <Skeleton height={30} width={70} />
+              </div>
+            </div>
+          </SkeletonTheme>
+        </>
       ) : (
         <div className="flex md:flex-col gap-6 p-8 md:p-1 mx-40 md:mx-auto md:justify-center md:items-center font-text3 border box-shadow rounded-md">
           {" "}
@@ -47,11 +64,11 @@ function SingleProduct() {
             <>
               {" "}
               <div className="flex justify-center items-center bg-white border rounded-md border-gray-600 w-[30rem] h-[30rem] md:w-[17rem] md:h-[17rem] ">
-              <img
-                    className="object-cover shadow-md rounded-lg w-[25rem] h-[25rem] md:w-[16rem] md:h-[16rem] "
-                    src={newImage}
-                    alt={singleProduct.name||singleProduct.title}
-                  />
+                <img
+                  className="object-cover shadow-md rounded-lg w-[25rem] h-[25rem] md:w-[16rem] md:h-[16rem] "
+                  src={newImage}
+                  alt={singleProduct.name || singleProduct.title}
+                />
               </div>
               <div className="flex flex-col flex-1 justify-around md:px-10 md:justify-center md:items-center">
                 <div className="flex flex-col gap-3 md:gap-1">
@@ -72,12 +89,16 @@ function SingleProduct() {
                 </div>
                 <p>
                   <b>Rating:</b>{" "}
-                  {singleProduct?.stars !== null ? singleProduct.stars : singleProduct.rating.rate}
+                  {singleProduct?.stars !== null
+                    ? singleProduct.stars
+                    : singleProduct.rating.rate}
                   /5
                 </p>
                 <p>
                   <b>Review By:</b>{" "}
-                  {singleProduct?.reviews !== null ? singleProduct.reviews : singleProduct.rating.count}
+                  {singleProduct?.reviews !== null
+                    ? singleProduct.reviews
+                    : singleProduct.rating.count}
                 </p>
                 <p className="font-text1 text-slate-600 text-lg md:text-md text-justify">
                   {singleProduct.description}

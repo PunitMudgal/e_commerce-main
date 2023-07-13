@@ -11,6 +11,7 @@ import { FilterProductProvider } from "./context/FilterContext";
 import { ProductProvider } from "./context/ProductContext";
 import Header from "./components/Header";
 import { CartProvider } from "./context/CartContext";
+import loading from "./assets/loding.gif";
 
 const Cart = lazy(() => import("./pages/Cart"));
 const Home = lazy(() => import("./pages/Home"));
@@ -30,7 +31,13 @@ function App() {
               <HashRouter basename="/">
                 <Header />
                 <Alert />
-                <Suspense fallback={<div>Loading...</div>}>
+                <Suspense
+                  fallback={
+                    <div className="flex justify-center w-full bg-transparent">
+                      <img src={loading} alt="loading_cart" />
+                    </div>
+                  }
+                >
                   <Routes>
                     <Route
                       exact
