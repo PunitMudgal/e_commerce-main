@@ -41,7 +41,12 @@ function SingleProduct() {
 
       {isSingleLoading ? (
         <>
-          <SkeletonTheme baseColor="#D5D8DC" highlightColor="#444">
+          <SkeletonTheme
+            baseColor="#D5D8DC"
+            highlightColor="#5D6D7E"
+            enableAnimation
+            direction="ltr"
+          >
             <div className="flex justify-center gap-2">
               <Skeleton height={400} width={400} enableAnimation={true} />
               <div className="flex flex-col justify-evenly">

@@ -7,11 +7,11 @@ const FilterReducer = (state, action) => {
         ...state,
         filterProduct: [...action.payload],
         products2: [...action.payload],
-        products3: [...action.payload],
+        // products3: [...action.payload],
         filter: { ...state.filter, maxPrice, price: maxPrice },
       };
 
-      case "SET_LIST_VIEW":
+    case "SET_LIST_VIEW":
       return {
         ...state,
         gridView: false,
@@ -71,25 +71,18 @@ const FilterReducer = (state, action) => {
       };
 
     case "SEARCHING_PRODUCTS":
-      const { products3 } = state;
-      let tempData = [...products3];
       const { search, price } = state.filter;
       let newData;
-
-      // searching products
-      newData = tempData.filter((prod) => {
-        return prod.description?.toLowerCase().includes(search.toLowerCase());
-      });
-
-    //   price slider
-      if (price === 0) {
-        tempData = tempData.filter(
-          (prod) => prod.price === price
-        );
+      if (search) {
+        newData = state.filterProduct.filter((prod) => {
+          let newTitle = prod.title || prod.name;
+          return newTitle.toLowerCase().includes(search.toLowerCase());
+        });
+      } else if (!search && !price) {
+        return (newData = state.filterProduct);
       } else {
-        tempData = tempData.filter((prod) => prod.price <= price);
+        newData = state.products2.filter((prod) => prod.price <= price);
       }
-      newData = tempData;
 
       return {
         ...state,
@@ -99,7 +92,7 @@ const FilterReducer = (state, action) => {
     case "CLEAR_FILTERS":
       return {
         ...state,
-        filterProduct: action.payload,
+        filterProduct: [...action.payload],
         filter: {
           search: "",
           sorting_value: "default",

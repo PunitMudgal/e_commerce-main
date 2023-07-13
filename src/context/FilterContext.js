@@ -7,7 +7,7 @@ const filterContext = createContext();
 const initialState = {
   filterProduct: [],
   products2: [],
-  products3:[],
+  // products3: [],
   gridView: true,
   filter: {
     search: "",
@@ -19,12 +19,12 @@ const initialState = {
 };
 
 const FilterProductProvider = ({ children }) => {
-    const [state, dispatch] = useReducer(reducer, initialState);
-    const {products} = UseProductContext();
-    
+  const [state, dispatch] = useReducer(reducer, initialState);
+  const { products } = UseProductContext();
+
   useEffect(() => {
-    dispatch({type: "LOADING_DATA_TO_FILTERS",payload:products})
-  },[products])
+    dispatch({ type: "LOADING_DATA_TO_FILTERS", payload: products });
+  }, [products]);
 
   //!start
   // list view type
@@ -86,4 +86,4 @@ const UseFilterContext = () => {
   return useContext(filterContext);
 };
 
-export {filterContext, UseFilterContext, FilterProductProvider}
+export { filterContext, UseFilterContext, FilterProductProvider };

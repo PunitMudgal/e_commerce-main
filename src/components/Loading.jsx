@@ -4,7 +4,12 @@ import "react-loading-skeleton/dist/skeleton.css";
 function Loading() {
   return (
     <>
-      <SkeletonTheme baseColor="#D5D8DC" highlightColor="#444">
+      <SkeletonTheme
+        baseColor="#D5D8DC"
+        highlightColor="#5D6D7E"
+        enableAnimation
+        direction="ltr"
+      >
         <div className="flex justify-around gap-2 p-10 md:p-2">
           <div className="flex flex-col gap-2 md:gap-1">
             <Skeleton height={30} width={120} className="mb-5" />
