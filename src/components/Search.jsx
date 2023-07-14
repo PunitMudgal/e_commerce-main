@@ -20,7 +20,7 @@ function Search() {
         onChange={getSortingValues}
         className="border-none outline-none bg-transparent"
         type="text"
-        placeholder="Search By Keyword..."
+        placeholder="Search Product..."
       />
     </label>
   );
