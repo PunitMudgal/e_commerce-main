@@ -5,8 +5,8 @@ function Loading() {
   return (
     <>
       <SkeletonTheme
-        baseColor="#D5D8DC"
-        highlightColor="#5D6D7E"
+        baseColor="#F2F4F4"
+        highlightColor="#CCD1D1"
         enableAnimation
         direction="ltr"
       >
