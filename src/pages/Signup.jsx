@@ -67,7 +67,7 @@ function Signup() {
               <p>Need Help?</p>
             </div>
             <p className="py-8">
-              <span className="text-gray-600">Already using Netflix?</span>{" "}
+              <span className="text-gray-600">Already have an Account?</span>{" "}
               <Link to="/login">Sign In</Link>
             </p>
           </form>
